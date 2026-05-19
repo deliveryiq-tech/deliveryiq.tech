@@ -3,16 +3,15 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="DeliveryIQ — The world's first Incident Lifecycle Intelligence Platform. Sits on top of any ticketing system. Turns every incident into SLA data, engineer coaching, and organisational intelligence.">
-<meta name="keywords" content="incident management, IT delivery, AI coaching, SLA management, ITSM intelligence, DeliveryIQ">
-<meta property="og:title" content="DeliveryIQ — Incident Lifecycle Intelligence">
-<meta property="og:description" content="Your ticketing system manages incidents. DeliveryIQ learns from them.">
+<meta name="description" content="DeliveryIQ — The intelligence layer for your IT delivery organisation. Develop your engineers. Protect your SLA. Capture your knowledge. Automatically.">
+<meta name="keywords" content="IT delivery intelligence, incident management, SLA protection, engineer development, DeliveryIQ">
+<meta property="og:title" content="DeliveryIQ — Delivery Intelligence Platform">
+<meta property="og:description" content="Your incidents happen. DeliveryIQ makes your organisation smarter from every one.">
 <meta property="og:url" content="https://deliveryiq.tech">
-<title>DeliveryIQ™ — Incident Lifecycle Intelligence Platform</title>
+<title>DeliveryIQ™ — Delivery Intelligence Platform</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Geist:wght@300;400;500;600;700&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
-/* ── TOKENS ────────────────────────────────────────────── */
 :root {
   --ink:    #06090F;
   --ink2:   #0D1424;
@@ -26,20 +25,16 @@
   --white:  #FFFFFF;
   --signal: #0EA5E9;
   --signal2:#38BDF8;
-  --glow:   #0284C7;
   --teal:   #14B8A6;
   --emerald:#10B981;
   --amber:  #F59E0B;
-  --rose:   #F43F5E;
-  --grad: linear-gradient(135deg, #0EA5E9 0%, #14B8A6 100%);
-  --grad2: linear-gradient(135deg, #0EA5E9 0%, #818CF8 100%);
-  --card-bg: rgba(20,30,48,0.6);
-  --card-border: rgba(46,64,96,0.6);
-  --r: 12px;
-  --r2: 20px;
+  --grad:   linear-gradient(135deg, #0EA5E9 0%, #14B8A6 100%);
+  --card:   rgba(20,30,48,0.6);
+  --border: rgba(46,64,96,0.5);
+  --r:      12px;
+  --r2:     20px;
 }
 
-/* ── RESET ─────────────────────────────────────────────── */
 *, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
 html { scroll-behavior:smooth; }
 body {
@@ -52,112 +47,81 @@ body {
   -webkit-font-smoothing: antialiased;
 }
 
-/* ── NOISE TEXTURE ─────────────────────────────────────── */
 body::before {
   content:'';
   position:fixed; inset:0; z-index:0; pointer-events:none;
-  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");
-  opacity: 0.4;
-}
-
-/* ── GRID LINES ────────────────────────────────────────── */
-.grid-bg {
-  position:fixed; inset:0; z-index:0; pointer-events:none;
   background-image:
-    linear-gradient(rgba(14,165,233,0.04) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(14,165,233,0.04) 1px, transparent 1px);
+    linear-gradient(rgba(14,165,233,0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(14,165,233,0.03) 1px, transparent 1px);
   background-size: 60px 60px;
 }
 
-/* ── ORBS ──────────────────────────────────────────────── */
 .orb {
   position:fixed; border-radius:50%;
   pointer-events:none; z-index:0;
-  filter: blur(100px); opacity:0.12;
+  filter:blur(120px); opacity:0.10;
 }
-.orb-1 { width:600px; height:600px; background:#0EA5E9; top:-200px; right:-100px; }
-.orb-2 { width:400px; height:400px; background:#14B8A6; bottom:-100px; left:-100px; }
-.orb-3 { width:300px; height:300px; background:#818CF8; top:50%; left:50%; transform:translate(-50%,-50%); opacity:0.06; }
+.orb-1 { width:700px; height:700px; background:#0EA5E9; top:-200px; right:-150px; }
+.orb-2 { width:500px; height:500px; background:#14B8A6; bottom:-150px; left:-150px; }
 
-/* ── LAYOUT ────────────────────────────────────────────── */
-.wrap { max-width:1100px; margin:0 auto; padding:0 32px; position:relative; z-index:1; }
+.wrap { max-width:1080px; margin:0 auto; padding:0 32px; position:relative; z-index:1; }
 
-/* ── NAV ───────────────────────────────────────────────── */
+/* NAV */
 nav {
   position:fixed; top:0; left:0; right:0; z-index:100;
   padding:0 32px; height:64px;
   display:flex; align-items:center; justify-content:space-between;
-  background:rgba(6,9,15,0.85);
+  background:rgba(6,9,15,0.90);
   backdrop-filter:blur(24px);
-  border-bottom:1px solid rgba(46,64,96,0.4);
+  border-bottom:1px solid var(--border);
 }
 .logo {
   font-family:'Geist Mono',monospace;
   font-size:18px; font-weight:600;
-  background: var(--grad);
+  background:var(--grad);
   -webkit-background-clip:text; -webkit-text-fill-color:transparent;
-  letter-spacing:-0.02em;
 }
-.logo sup {
-  font-size:9px; font-weight:500;
-  -webkit-text-fill-color: rgba(14,165,233,0.7);
-  letter-spacing:0;
-}
-.nav-right { display:flex; align-items:center; gap:32px; }
-.nav-link {
-  font-size:13px; font-weight:500; color:var(--muted);
-  text-decoration:none; letter-spacing:0.01em;
-  transition:color 0.2s;
-}
-.nav-link:hover { color:var(--pale); }
+.logo sup { font-size:9px; -webkit-text-fill-color:rgba(14,165,233,0.6); }
 .nav-cta {
   font-size:13px; font-weight:600;
   background:var(--grad); color:var(--white);
   padding:8px 20px; border-radius:8px;
   text-decoration:none;
   transition:opacity 0.2s, transform 0.2s;
-  letter-spacing:0.01em;
 }
-.nav-cta:hover { opacity:0.9; transform:translateY(-1px); }
+.nav-cta:hover { opacity:0.85; transform:translateY(-1px); }
 
-/* ── HERO ──────────────────────────────────────────────── */
+/* HERO */
 .hero {
   min-height:100vh;
   display:flex; flex-direction:column;
-  justify-content:center; align-items:flex-start;
-  padding-top:64px;
+  justify-content:center;
+  padding-top:80px;
 }
-.hero-inner { max-width:800px; }
-
 .eyebrow {
   display:inline-flex; align-items:center; gap:8px;
   background:rgba(14,165,233,0.08);
   border:1px solid rgba(14,165,233,0.2);
   border-radius:100px;
-  padding:5px 14px; margin-bottom:36px;
+  padding:5px 16px; margin-bottom:36px;
   font-family:'Geist Mono',monospace;
-  font-size:11px; font-weight:500;
-  color:var(--signal2); letter-spacing:0.08em;
-  text-transform:uppercase;
+  font-size:11px; color:var(--signal2);
+  letter-spacing:0.08em; text-transform:uppercase;
+  width:fit-content;
   animation:fadeUp 0.8s ease 0.1s both;
 }
 .eyebrow::before {
-  content:'';
-  width:5px; height:5px; border-radius:50%;
+  content:''; width:5px; height:5px; border-radius:50%;
   background:var(--signal);
   animation:blink 2s infinite;
 }
-@keyframes blink {
-  0%,100%{ opacity:1; } 50%{ opacity:0.3; }
-}
+@keyframes blink { 0%,100%{opacity:1;} 50%{opacity:0.3;} }
 
 .hero h1 {
-  font-family:'Instrument Serif', Georgia, serif;
-  font-size:clamp(48px, 7vw, 80px);
-  font-weight:400;
-  line-height:1.05;
-  letter-spacing:-0.02em;
-  color:var(--snow);
+  font-family:'Instrument Serif',Georgia,serif;
+  font-size:clamp(44px,7vw,78px);
+  font-weight:400; line-height:1.06;
+  letter-spacing:-0.02em; color:var(--snow);
   margin-bottom:28px;
   animation:fadeUp 0.8s ease 0.2s both;
 }
@@ -166,68 +130,64 @@ nav {
   background:var(--grad);
   -webkit-background-clip:text; -webkit-text-fill-color:transparent;
 }
-
 .hero-sub {
-  font-size:18px; font-weight:300;
+  font-size:19px; font-weight:300;
   color:var(--dim); line-height:1.75;
-  max-width:580px; margin-bottom:48px;
+  max-width:560px; margin-bottom:52px;
   animation:fadeUp 0.8s ease 0.3s both;
 }
 .hero-sub strong { color:var(--pale); font-weight:500; }
 
 .hero-actions {
   display:flex; gap:16px; flex-wrap:wrap;
-  animation:fadeUp 0.8s ease 0.4s both;
   margin-bottom:80px;
+  animation:fadeUp 0.8s ease 0.4s both;
 }
 .btn-primary {
   display:inline-flex; align-items:center; gap:8px;
-  background:var(--grad);
-  color:var(--white); font-weight:600; font-size:15px;
-  padding:14px 28px; border-radius:10px;
-  text-decoration:none; letter-spacing:0.01em;
-  transition:all 0.25s; box-shadow:0 0 40px rgba(14,165,233,0.2);
+  background:var(--grad); color:var(--white);
+  font-weight:600; font-size:15px;
+  padding:14px 30px; border-radius:10px;
+  text-decoration:none;
+  transition:all 0.25s;
+  box-shadow:0 0 40px rgba(14,165,233,0.2);
 }
 .btn-primary:hover { transform:translateY(-2px); box-shadow:0 0 60px rgba(14,165,233,0.35); }
 .btn-secondary {
   display:inline-flex; align-items:center; gap:8px;
-  background:transparent;
-  color:var(--pale); font-weight:500; font-size:15px;
-  padding:14px 28px; border-radius:10px;
-  text-decoration:none; letter-spacing:0.01em;
-  border:1px solid var(--card-border);
+  background:transparent; color:var(--pale);
+  font-weight:500; font-size:15px;
+  padding:14px 30px; border-radius:10px;
+  text-decoration:none;
+  border:1px solid var(--border);
   transition:all 0.25s;
 }
 .btn-secondary:hover { border-color:var(--signal); color:var(--signal2); }
-.arrow { font-size:18px; transition:transform 0.2s; }
+.arrow { transition:transform 0.2s; }
 .btn-primary:hover .arrow { transform:translateX(4px); }
 
-/* ── HERO STATS ────────────────────────────────────────── */
-.hero-stats {
+/* STAT STRIP */
+.stat-strip {
   display:flex; gap:0;
-  border:1px solid var(--card-border);
+  border:1px solid var(--border);
   border-radius:var(--r2);
-  background:var(--card-bg);
+  background:var(--card);
   backdrop-filter:blur(16px);
   overflow:hidden;
   animation:fadeUp 0.8s ease 0.5s both;
 }
-.stat {
-  flex:1; padding:28px 32px;
-  border-right:1px solid var(--card-border);
-  position:relative;
-}
+.stat { flex:1; padding:28px 24px; border-right:1px solid var(--border); }
 .stat:last-child { border-right:none; }
 .stat-val {
   font-family:'Geist Mono',monospace;
-  font-size:32px; font-weight:600;
+  font-size:30px; font-weight:600;
   background:var(--grad);
   -webkit-background-clip:text; -webkit-text-fill-color:transparent;
-  margin-bottom:4px; line-height:1;
+  margin-bottom:4px;
 }
-.stat-label { font-size:12px; color:var(--muted); letter-spacing:0.04em; font-weight:500; }
+.stat-label { font-size:11px; color:var(--muted); letter-spacing:0.05em; text-transform:uppercase; }
 
-/* ── SECTION ───────────────────────────────────────────── */
+/* SECTIONS */
 section { padding:100px 0; }
 .section-eye {
   font-family:'Geist Mono',monospace;
@@ -237,367 +197,153 @@ section { padding:100px 0; }
 }
 .section-h {
   font-family:'Instrument Serif',Georgia,serif;
-  font-size:clamp(32px,4vw,48px);
+  font-size:clamp(30px,4vw,46px);
   font-weight:400; line-height:1.15;
   letter-spacing:-0.02em; color:var(--snow);
   margin-bottom:16px;
 }
 .section-sub {
   font-size:17px; color:var(--dim);
-  max-width:560px; line-height:1.7;
+  max-width:560px; line-height:1.75;
   font-weight:300;
 }
 
-/* ── PROBLEM / SOLUTION ────────────────────────────────── */
-.ps-grid {
+/* PROBLEM */
+.problem-grid {
   display:grid; grid-template-columns:1fr 1fr;
   gap:24px; margin-top:56px;
 }
-.ps-card {
+.problem-card {
   padding:36px;
+  background:var(--card);
+  border:1px solid var(--border);
   border-radius:var(--r2);
-  border:1px solid var(--card-border);
-  background:var(--card-bg);
   backdrop-filter:blur(16px);
 }
-.ps-card.problem { border-color:rgba(244,63,94,0.2); }
-.ps-card.solution { border-color:rgba(14,165,233,0.25); background:rgba(14,165,233,0.04); }
-.ps-head {
+.problem-card.pain { border-color:rgba(239,68,68,0.2); }
+.problem-card.gain { border-color:rgba(14,165,233,0.25); background:rgba(14,165,233,0.04); }
+.card-eye {
   font-family:'Geist Mono',monospace;
   font-size:11px; letter-spacing:0.1em;
   text-transform:uppercase; margin-bottom:20px;
   display:flex; align-items:center; gap:8px;
 }
-.ps-head.p { color:var(--rose); }
-.ps-head.s { color:var(--signal); }
-.ps-card h3 {
+.card-eye.pain { color:#F87171; }
+.card-eye.gain { color:var(--signal); }
+.problem-card h3 {
   font-family:'Instrument Serif',Georgia,serif;
-  font-size:22px; font-weight:400;
-  color:var(--snow); margin-bottom:16px;
-  letter-spacing:-0.01em;
+  font-size:22px; color:var(--snow); margin-bottom:20px;
 }
-.ps-list { list-style:none; display:flex; flex-direction:column; gap:10px; }
-.ps-list li {
+.prob-list { list-style:none; display:flex; flex-direction:column; gap:12px; }
+.prob-list li {
   display:flex; gap:10px; font-size:14px;
-  color:var(--dim); align-items:flex-start;
+  color:var(--dim); align-items:flex-start; line-height:1.6;
 }
-.ps-list li::before { content:'—'; flex-shrink:0; opacity:0.5; }
-.ps-list.sol li::before { content:'✦'; color:var(--signal); opacity:1; font-size:10px; margin-top:4px; }
+.prob-list li .icon { flex-shrink:0; margin-top:2px; }
 
-/* ── LIFECYCLE ─────────────────────────────────────────── */
-.lc-wrap {
-  margin-top:56px;
-  background:var(--card-bg);
-  border:1px solid var(--card-border);
-  border-radius:var(--r2);
-  padding:48px;
-  backdrop-filter:blur(16px);
-  overflow:hidden;
-  position:relative;
-}
-.lc-wrap::after {
-  content:'';
-  position:absolute; bottom:0; left:0; right:0; height:1px;
-  background:var(--grad);
-  opacity:0.4;
-}
-.lc-top {
-  font-family:'Geist Mono',monospace;
-  font-size:11px; color:var(--muted);
-  letter-spacing:0.08em; text-transform:uppercase;
-  margin-bottom:36px;
-}
-.lc-flow {
-  display:flex; align-items:center;
-  gap:0; margin-bottom:40px;
-  overflow-x:auto; padding-bottom:8px;
-}
-.lc-item {
-  display:flex; flex-direction:column;
-  align-items:center; flex:1; min-width:80px;
-  position:relative;
-}
-.lc-item:not(:last-child)::after {
-  content:'';
-  position:absolute; right:0; top:20px;
-  width:100%; height:1px;
-  background:linear-gradient(90deg, var(--slate), transparent);
-  z-index:0;
-}
-.lc-num {
-  width:40px; height:40px; border-radius:50%;
-  display:flex; align-items:center; justify-content:center;
-  font-family:'Geist Mono',monospace;
-  font-size:13px; font-weight:600;
-  border:1px solid; position:relative; z-index:1;
-  margin-bottom:10px;
-}
-.lc-name { font-size:11px; font-weight:500; text-align:center; letter-spacing:0.03em; }
-
-.lc-outputs {
-  display:grid; grid-template-columns:repeat(4,1fr);
-  gap:16px; padding-top:36px;
-  border-top:1px solid var(--card-border);
-}
-.lc-out {
-  padding:20px;
-  background:rgba(255,255,255,0.02);
-  border:1px solid var(--card-border);
-  border-radius:var(--r);
-  transition:border-color 0.2s, background 0.2s;
-}
-.lc-out:hover {
-  border-color:rgba(14,165,233,0.3);
-  background:rgba(14,165,233,0.04);
-}
-.lc-out-icon { font-size:20px; margin-bottom:10px; }
-.lc-out-name { font-size:13px; font-weight:600; color:var(--snow); margin-bottom:4px; }
-.lc-out-desc { font-size:12px; color:var(--muted); line-height:1.5; }
-
-/* ── MODULES ───────────────────────────────────────────── */
-.modules-grid {
+/* OUTCOMES */
+.outcomes-grid {
   display:grid; grid-template-columns:repeat(3,1fr);
   gap:20px; margin-top:56px;
 }
-.module-card {
+.outcome-card {
   padding:32px;
-  background:var(--card-bg);
-  border:1px solid var(--card-border);
+  background:var(--card);
+  border:1px solid var(--border);
   border-radius:var(--r2);
   backdrop-filter:blur(16px);
-  transition:all 0.3s; position:relative;
-  overflow:hidden;
+  transition:all 0.3s; position:relative; overflow:hidden;
 }
-.module-card::before {
-  content:'';
-  position:absolute; top:0; left:0; right:0; height:2px;
-  opacity:0; transition:opacity 0.3s;
+.outcome-card::before {
+  content:''; position:absolute; top:0; left:0; right:0; height:2px;
+  background:var(--grad); opacity:0; transition:opacity 0.3s;
 }
-.module-card:hover { transform:translateY(-4px); border-color:rgba(14,165,233,0.3); }
-.module-card:hover::before { opacity:1; }
-.mod-c1::before { background:linear-gradient(90deg,#0EA5E9,#38BDF8); }
-.mod-c2::before { background:linear-gradient(90deg,#F59E0B,#FCD34D); }
-.mod-c3::before { background:linear-gradient(90deg,#14B8A6,#34D399); }
-.mod-c4::before { background:linear-gradient(90deg,#818CF8,#A78BFA); }
-.mod-c5::before { background:linear-gradient(90deg,#F43F5E,#FB7185); }
-
-.mod-tag {
-  font-family:'Geist Mono',monospace;
-  font-size:10px; letter-spacing:0.1em;
-  text-transform:uppercase;
-  padding:4px 10px; border-radius:100px;
-  display:inline-block; margin-bottom:20px;
-  font-weight:500;
-}
-.t1 { background:rgba(14,165,233,0.1); color:#38BDF8; }
-.t2 { background:rgba(245,158,11,0.1); color:#FCD34D; }
-.t3 { background:rgba(20,184,166,0.1); color:#34D399; }
-.t4 { background:rgba(129,140,248,0.1); color:#A78BFA; }
-.t5 { background:rgba(244,63,94,0.1); color:#FB7185; }
-
-.mod-name {
+.outcome-card:hover { transform:translateY(-4px); border-color:rgba(14,165,233,0.3); }
+.outcome-card:hover::before { opacity:1; }
+.outcome-icon { font-size:28px; margin-bottom:16px; }
+.outcome-title {
   font-family:'Instrument Serif',Georgia,serif;
-  font-size:20px; font-weight:400;
-  color:var(--snow); margin-bottom:12px;
-  letter-spacing:-0.01em;
+  font-size:20px; color:var(--snow); margin-bottom:10px;
 }
-.mod-desc { font-size:13px; color:var(--muted); line-height:1.65; }
+.outcome-desc { font-size:13px; color:var(--muted); line-height:1.65; }
 
-/* ── HOW IT WORKS ──────────────────────────────────────── */
-.how-grid {
+/* WHO */
+.who-grid {
   display:grid; grid-template-columns:1fr 1fr;
-  gap:48px; align-items:center;
-  margin-top:56px;
+  gap:24px; margin-top:56px;
 }
-.how-steps { display:flex; flex-direction:column; gap:0; }
-.how-step {
-  display:flex; gap:24px;
-  padding:28px 0;
-  border-bottom:1px solid var(--card-border);
-  position:relative;
-}
-.how-step:last-child { border-bottom:none; }
-.step-num {
-  width:36px; height:36px; border-radius:50%;
-  display:flex; align-items:center; justify-content:center;
-  font-family:'Geist Mono',monospace;
-  font-size:12px; font-weight:600;
-  background:rgba(14,165,233,0.1);
-  border:1px solid rgba(14,165,233,0.2);
-  color:var(--signal2); flex-shrink:0; margin-top:2px;
-}
-.step-content h4 {
-  font-size:15px; font-weight:600;
-  color:var(--snow); margin-bottom:6px;
-}
-.step-content p { font-size:13px; color:var(--muted); line-height:1.6; }
-
-.how-visual {
-  background:var(--card-bg);
-  border:1px solid var(--card-border);
+.who-card {
+  padding:36px;
+  background:var(--card);
+  border:1px solid var(--border);
   border-radius:var(--r2);
-  padding:32px;
   backdrop-filter:blur(16px);
 }
-.vis-header {
-  display:flex; align-items:center; gap:8px;
-  margin-bottom:24px;
-  padding-bottom:16px;
-  border-bottom:1px solid var(--card-border);
-}
-.vis-dots { display:flex; gap:6px; }
-.vis-dot {
-  width:10px; height:10px; border-radius:50%;
-}
-.vis-title {
+.who-card.featured { border-color:rgba(14,165,233,0.4); background:rgba(14,165,233,0.05); }
+.who-tag {
   font-family:'Geist Mono',monospace;
-  font-size:11px; color:var(--muted);
+  font-size:10px; letter-spacing:0.1em; text-transform:uppercase;
+  padding:4px 12px; border-radius:100px;
+  display:inline-block; margin-bottom:20px;
 }
-.vis-row {
-  display:flex; align-items:flex-start;
-  gap:12px; margin-bottom:16px;
+.who-tag.msp { background:rgba(14,165,233,0.1); color:var(--signal2); }
+.who-tag.ent { background:rgba(20,184,166,0.1); color:#34D399; }
+.who-card h3 {
+  font-family:'Instrument Serif',Georgia,serif;
+  font-size:22px; color:var(--snow); margin-bottom:12px;
 }
-.vis-row:last-child { margin-bottom:0; }
-.vis-icon {
-  width:32px; height:32px; border-radius:8px;
-  display:flex; align-items:center; justify-content:center;
-  font-size:14px; flex-shrink:0;
+.who-card p { font-size:14px; color:var(--dim); line-height:1.7; margin-bottom:16px; }
+.who-benefits { list-style:none; display:flex; flex-direction:column; gap:8px; }
+.who-benefits li {
+  display:flex; gap:8px; font-size:13px; color:var(--dim);
 }
-.vis-text h5 { font-size:12px; font-weight:600; color:var(--snow); margin-bottom:2px; }
-.vis-text p { font-size:11px; color:var(--muted); line-height:1.5; }
-.vis-bar {
-  height:4px; border-radius:100px;
-  margin-top:6px; background:rgba(255,255,255,0.06);
-  overflow:hidden;
-}
-.vis-fill { height:100%; border-radius:100px; }
+.who-benefits li::before { content:'✓'; color:var(--emerald); flex-shrink:0; font-weight:700; }
 
-/* ── INTEGRATIONS ──────────────────────────────────────── */
-.integrations {
+/* WORKS WITH */
+.works-wrap {
   margin-top:56px;
-  background:var(--card-bg);
-  border:1px solid var(--card-border);
+  background:var(--card);
+  border:1px solid var(--border);
   border-radius:var(--r2);
   padding:48px;
-  backdrop-filter:blur(16px);
   text-align:center;
+  backdrop-filter:blur(16px);
 }
-.int-label {
+.works-label {
   font-family:'Geist Mono',monospace;
   font-size:11px; color:var(--muted);
   letter-spacing:0.1em; text-transform:uppercase;
   margin-bottom:32px;
 }
-.int-logos {
-  display:flex; justify-content:center;
-  align-items:center; gap:12px;
-  flex-wrap:wrap;
+.works-logos {
+  display:flex; flex-wrap:wrap;
+  justify-content:center; gap:10px;
 }
-.int-badge {
+.works-badge {
   background:rgba(255,255,255,0.04);
-  border:1px solid var(--card-border);
+  border:1px solid var(--border);
   border-radius:10px; padding:10px 20px;
   font-size:13px; font-weight:500;
-  color:var(--dim); letter-spacing:0.02em;
+  color:var(--dim);
   transition:all 0.2s;
 }
-.int-badge:hover {
-  border-color:rgba(14,165,233,0.3);
-  color:var(--signal2);
-  background:rgba(14,165,233,0.04);
-}
-.int-plus {
-  font-family:'Geist Mono',monospace;
-  font-size:13px; color:var(--muted);
-  padding:10px 16px;
-  background:rgba(14,165,233,0.06);
-  border:1px dashed rgba(14,165,233,0.2);
-  border-radius:10px; color:var(--signal);
+.works-badge:hover { border-color:rgba(14,165,233,0.3); color:var(--signal2); }
+.works-note {
+  margin-top:24px; font-size:13px; color:var(--muted);
+  font-style:italic;
 }
 
-/* ── PRICING ───────────────────────────────────────────── */
-.pricing-grid {
-  display:grid; grid-template-columns:repeat(3,1fr);
-  gap:20px; margin-top:56px; align-items:start;
-}
-.price-card {
-  background:var(--card-bg);
-  border:1px solid var(--card-border);
-  border-radius:var(--r2);
-  padding:36px;
-  backdrop-filter:blur(16px);
-  transition:all 0.3s;
-}
-.price-card:hover { transform:translateY(-4px); }
-.price-card.featured {
-  border-color:rgba(14,165,233,0.4);
-  background:rgba(14,165,233,0.05);
-  position:relative;
-}
-.featured-badge {
-  position:absolute; top:-12px; left:50%; transform:translateX(-50%);
-  background:var(--grad); color:var(--white);
-  font-size:11px; font-weight:700;
-  padding:4px 16px; border-radius:100px;
-  letter-spacing:0.06em; text-transform:uppercase;
-  white-space:nowrap;
-}
-.price-tier {
-  font-family:'Geist Mono',monospace;
-  font-size:11px; letter-spacing:0.1em;
-  text-transform:uppercase; color:var(--muted);
-  margin-bottom:12px;
-}
-.price-name {
-  font-family:'Instrument Serif',Georgia,serif;
-  font-size:24px; color:var(--snow);
-  margin-bottom:8px;
-}
-.price-amount {
-  font-family:'Geist Mono',monospace;
-  font-size:36px; font-weight:600;
-  background:var(--grad);
-  -webkit-background-clip:text; -webkit-text-fill-color:transparent;
-  line-height:1; margin-bottom:4px;
-}
-.price-unit { font-size:12px; color:var(--muted); margin-bottom:28px; }
-.price-features { list-style:none; display:flex; flex-direction:column; gap:10px; margin-bottom:32px; }
-.price-features li {
-  display:flex; gap:10px; font-size:13px; color:var(--dim);
-  align-items:flex-start;
-}
-.price-features li span.ok { color:var(--emerald); flex-shrink:0; }
-.price-features li span.dim { color:var(--muted); flex-shrink:0; }
-.price-btn {
-  display:block; text-align:center;
-  padding:12px; border-radius:10px;
-  font-size:14px; font-weight:600;
-  text-decoration:none; transition:all 0.2s;
-}
-.price-btn.outlined {
-  border:1px solid var(--card-border);
-  color:var(--pale);
-}
-.price-btn.outlined:hover { border-color:var(--signal); color:var(--signal2); }
-.price-btn.filled {
-  background:var(--grad); color:var(--white);
-  box-shadow:0 0 30px rgba(14,165,233,0.2);
-}
-.price-btn.filled:hover { box-shadow:0 0 50px rgba(14,165,233,0.35); transform:translateY(-1px); }
-
-/* ── FOUNDER ───────────────────────────────────────────── */
+/* FOUNDER */
 .founder-wrap {
-  margin-top:56px;
   display:grid; grid-template-columns:1fr 2fr;
-  gap:48px; align-items:center;
+  gap:48px; align-items:center; margin-top:56px;
 }
 .founder-card {
-  background:var(--card-bg);
-  border:1px solid var(--card-border);
+  background:var(--card);
+  border:1px solid var(--border);
   border-radius:var(--r2);
-  padding:40px;
+  padding:40px; text-align:center;
   backdrop-filter:blur(16px);
-  text-align:center;
 }
 .founder-avatar {
   width:80px; height:80px; border-radius:50%;
@@ -606,7 +352,7 @@ section { padding:100px 0; }
   font-family:'Instrument Serif',Georgia,serif;
   font-size:32px; color:var(--white);
   margin:0 auto 20px;
-  box-shadow:0 0 40px rgba(14,165,233,0.3);
+  box-shadow:0 0 40px rgba(14,165,233,0.25);
 }
 .founder-name {
   font-family:'Instrument Serif',Georgia,serif;
@@ -614,69 +360,61 @@ section { padding:100px 0; }
 }
 .founder-title { font-size:13px; color:var(--muted); margin-bottom:20px; }
 .founder-tags { display:flex; flex-wrap:wrap; gap:6px; justify-content:center; }
-.tag {
-  font-size:11px; padding:4px 10px;
-  border-radius:100px;
+.ftag {
+  font-size:11px; padding:4px 10px; border-radius:100px;
   background:rgba(14,165,233,0.08);
   border:1px solid rgba(14,165,233,0.15);
   color:var(--signal2);
 }
 .founder-story h3 {
   font-family:'Instrument Serif',Georgia,serif;
-  font-size:28px; color:var(--snow);
-  margin-bottom:20px; line-height:1.3;
+  font-size:28px; color:var(--snow); margin-bottom:20px; line-height:1.3;
 }
 .founder-story p {
-  font-size:15px; color:var(--dim);
-  line-height:1.8; margin-bottom:16px;
+  font-size:15px; color:var(--dim); line-height:1.8; margin-bottom:16px;
 }
 .founder-metrics {
   display:flex; gap:32px; margin-top:28px;
-  padding-top:28px;
-  border-top:1px solid var(--card-border);
+  padding-top:28px; border-top:1px solid var(--border);
 }
 .f-metric .fv {
   font-family:'Geist Mono',monospace;
-  font-size:28px; font-weight:600;
+  font-size:26px; font-weight:600;
   background:var(--grad);
   -webkit-background-clip:text; -webkit-text-fill-color:transparent;
 }
-.f-metric .fl { font-size:11px; color:var(--muted); margin-top:2px; }
+.f-metric .fl { font-size:11px; color:var(--muted); margin-top:2px; text-transform:uppercase; letter-spacing:0.04em; }
 
-/* ── CTA ───────────────────────────────────────────────── */
-.cta-section {
+/* EARLY ACCESS */
+.early-wrap {
   margin:0 0 100px;
-  background:var(--card-bg);
-  border:1px solid var(--card-border);
+  background:var(--card);
+  border:1px solid var(--border);
   border-radius:var(--r2);
   padding:80px 64px;
   text-align:center;
   backdrop-filter:blur(16px);
   position:relative; overflow:hidden;
 }
-.cta-section::before {
-  content:'';
-  position:absolute; top:0; left:0; right:0; height:1px;
+.early-wrap::before {
+  content:''; position:absolute; top:0; left:0; right:0; height:1px;
   background:var(--grad); opacity:0.5;
 }
-.cta-section h2 {
+.early-wrap h2 {
   font-family:'Instrument Serif',Georgia,serif;
-  font-size:clamp(32px,4vw,52px);
-  color:var(--snow); margin-bottom:16px;
-  letter-spacing:-0.02em;
+  font-size:clamp(30px,4vw,50px);
+  color:var(--snow); margin-bottom:16px; letter-spacing:-0.02em;
 }
-.cta-section p {
+.early-wrap p {
   font-size:17px; color:var(--dim);
-  max-width:500px; margin:0 auto 40px;
+  max-width:480px; margin:0 auto 40px;
   line-height:1.7; font-weight:300;
 }
-.cta-actions { display:flex; gap:16px; justify-content:center; flex-wrap:wrap; }
+.early-actions { display:flex; gap:16px; justify-content:center; flex-wrap:wrap; }
+.early-note { margin-top:24px; font-size:13px; color:var(--muted); }
 
-/* ── FOOTER ────────────────────────────────────────────── */
-footer {
-  border-top:1px solid var(--card-border);
-  padding:48px 0;
-}
+/* FOOTER */
+footer { border-top:1px solid var(--border); padding:48px 0; }
 .footer-inner {
   display:flex; justify-content:space-between;
   align-items:center; flex-wrap:wrap; gap:24px;
@@ -687,28 +425,19 @@ footer {
   background:var(--grad);
   -webkit-background-clip:text; -webkit-text-fill-color:transparent;
 }
-.footer-links { display:flex; gap:24px; }
-.footer-links a {
-  font-size:13px; color:var(--muted);
-  text-decoration:none; transition:color 0.2s;
-}
-.footer-links a:hover { color:var(--pale); }
-.footer-right { font-size:12px; color:var(--muted); }
-.footer-domains {
-  display:flex; gap:10px; flex-wrap:wrap;
-  margin-top:8px;
-}
+.footer-domains { display:flex; gap:8px; flex-wrap:wrap; margin-top:8px; }
 .domain-badge {
   font-family:'Geist Mono',monospace;
   font-size:11px; padding:3px 10px;
-  border:1px solid var(--card-border);
+  border:1px solid var(--border);
   border-radius:6px; color:var(--muted);
 }
+.footer-right { font-size:12px; color:var(--muted); text-align:right; line-height:1.8; }
 
-/* ── ANIMATIONS ────────────────────────────────────────── */
+/* ANIMATIONS */
 @keyframes fadeUp {
   from { opacity:0; transform:translateY(24px); }
-  to   { opacity:1; transform:translateY(0); }
+  to { opacity:1; transform:translateY(0); }
 }
 .reveal {
   opacity:0; transform:translateY(24px);
@@ -716,386 +445,202 @@ footer {
 }
 .reveal.visible { opacity:1; transform:translateY(0); }
 
-/* ── RESPONSIVE ────────────────────────────────────────── */
+/* RESPONSIVE */
 @media(max-width:900px) {
-  .ps-grid { grid-template-columns:1fr; }
-  .modules-grid { grid-template-columns:1fr 1fr; }
-  .how-grid { grid-template-columns:1fr; }
-  .pricing-grid { grid-template-columns:1fr; }
+  .problem-grid { grid-template-columns:1fr; }
+  .outcomes-grid { grid-template-columns:1fr 1fr; }
+  .who-grid { grid-template-columns:1fr; }
   .founder-wrap { grid-template-columns:1fr; }
-  .hero-stats { flex-direction:column; }
-  .stat { border-right:none; border-bottom:1px solid var(--card-border); }
+  .stat-strip { flex-direction:column; }
+  .stat { border-right:none; border-bottom:1px solid var(--border); }
   .stat:last-child { border-bottom:none; }
-  .lc-outputs { grid-template-columns:1fr 1fr; }
-  .nav-right .nav-link { display:none; }
+  .early-wrap { padding:48px 24px; }
   .wrap { padding:0 20px; }
+  nav { padding:0 20px; }
 }
 @media(max-width:600px) {
-  .modules-grid { grid-template-columns:1fr; }
-  .cta-section { padding:48px 24px; }
+  .outcomes-grid { grid-template-columns:1fr; }
+  .founder-metrics { flex-wrap:wrap; gap:20px; }
 }
 </style>
 </head>
 <body>
 
-<!-- BG -->
-<div class="grid-bg"></div>
 <div class="orb orb-1"></div>
 <div class="orb orb-2"></div>
-<div class="orb orb-3"></div>
 
 <!-- NAV -->
 <nav>
   <div class="logo">DeliveryIQ<sup>TM</sup></div>
-  <div class="nav-right">
-    <a href="#how" class="nav-link">How it works</a>
-    <a href="#modules" class="nav-link">Modules</a>
-    <a href="#pricing" class="nav-link">Pricing</a>
-    <a href="#contact" class="nav-cta">Request Early Access</a>
-  </div>
+  <a href="#contact" class="nav-cta">Request Early Access</a>
 </nav>
 
 <!-- HERO -->
 <section class="hero">
   <div class="wrap">
-    <div class="hero-inner">
-      <div class="eyebrow">Incident Lifecycle Intelligence Platform</div>
-      <h1>Your ticketing system<br>manages incidents.<br><em>DeliveryIQ</em> learns from them.</h1>
-      <p class="hero-sub">Sits on top of <strong>any ITSM tool</strong>. Tracks the complete incident journey. Turns every incident into SLA evidence, engineer coaching, and organisational intelligence — automatically.</p>
-      <div class="hero-actions">
-        <a href="#contact" class="btn-primary">Request Early Access <span class="arrow">→</span></a>
-        <a href="#how" class="btn-secondary">See how it works</a>
+    <div class="eyebrow">Delivery Intelligence Platform</div>
+    <h1>Your incidents happen.<br><em>Your organisation</em><br>should learn from them.</h1>
+    <p class="hero-sub">DeliveryIQ is the intelligence layer for IT delivery organisations. <strong>Develop your engineers. Protect your SLA. Capture your knowledge.</strong> Automatically — after every incident.</p>
+    <div class="hero-actions">
+      <a href="#contact" class="btn-primary">Request Early Access <span class="arrow">→</span></a>
+      <a href="#outcomes" class="btn-secondary">See what changes</a>
+    </div>
+    <div class="stat-strip">
+      <div class="stat">
+        <div class="stat-val">Every</div>
+        <div class="stat-label">Incident becomes intelligence</div>
       </div>
-      <div class="hero-stats">
-        <div class="stat">
-          <div class="stat-val">Any</div>
-          <div class="stat-label">TICKETING SYSTEM</div>
-        </div>
-        <div class="stat">
-          <div class="stat-val">4</div>
-          <div class="stat-label">INTELLIGENCE OUTPUTS</div>
-        </div>
-        <div class="stat">
-          <div class="stat-val">0</div>
-          <div class="stat-label">DIRECT COMPETITORS</div>
-        </div>
-        <div class="stat">
-          <div class="stat-val">24yr</div>
-          <div class="stat-label">PRACTITIONER INSIGHT</div>
-        </div>
+      <div class="stat">
+        <div class="stat-val">Any</div>
+        <div class="stat-label">Existing ITSM tool supported</div>
+      </div>
+      <div class="stat">
+        <div class="stat-val">Zero</div>
+        <div class="stat-label">Direct competitors</div>
+      </div>
+      <div class="stat">
+        <div class="stat-val">24yr</div>
+        <div class="stat-label">Practitioner insight behind it</div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- PROBLEM / SOLUTION -->
+<!-- PROBLEM -->
 <section>
   <div class="wrap">
-    <div class="section-eye reveal">The gap in your stack</div>
-    <h2 class="section-h reveal">Every ITSM tool manages workflow.<br>Nobody manages intelligence.</h2>
-    <p class="section-sub reveal">ServiceNow moves tickets. PagerDuty sends alerts. But when the incident closes — the learning stops. DeliveryIQ is the layer that captures what happens next.</p>
+    <div class="section-eye reveal">The gap nobody has filled</div>
+    <h2 class="section-h reveal">Your ITSM tool manages incidents.<br>Nobody manages what they teach you.</h2>
+    <p class="section-sub reveal">Every incident your team resolves contains valuable intelligence. Today that intelligence disappears when the ticket closes.</p>
 
-    <div class="ps-grid">
-      <div class="ps-card problem reveal">
-        <div class="ps-head p">⬤ &nbsp;The problem today</div>
-        <h3>Incidents close. Learning doesn't happen.</h3>
-        <ul class="ps-list">
-          <li>Same engineer makes the same mistake next month</li>
-          <li>Knowledge lives in people's heads — not in systems</li>
-          <li>No one knows if the SOP was followed or even opened</li>
-          <li>Client claims SLA breach — you have no evidence to dispute</li>
-          <li>Someone leaves — their expertise leaves with them</li>
-          <li>Training is generic — not based on actual incident gaps</li>
+    <div class="problem-grid">
+      <div class="problem-card pain reveal">
+        <div class="card-eye pain">⬤ &nbsp;What happens today</div>
+        <h3>The intelligence is lost after every incident.</h3>
+        <ul class="prob-list">
+          <li><span class="icon">—</span>Same engineer makes the same mistake next month</li>
+          <li><span class="icon">—</span>Knowledge walks out the door when someone resigns</li>
+          <li><span class="icon">—</span>Manager spends hours coaching what a system could do</li>
+          <li><span class="icon">—</span>Client disputes your SLA — you have no evidence to respond</li>
+          <li><span class="icon">—</span>Training is generic — not based on what your team actually needs</li>
+          <li><span class="icon">—</span>Coverage gaps discovered only when someone is already absent</li>
         </ul>
       </div>
-      <div class="ps-card solution reveal">
-        <div class="ps-head s">✦ &nbsp;What DeliveryIQ does</div>
-        <h3>Every incident becomes a learning event.</h3>
-        <ul class="ps-list sol">
-          <li>Engineer receives personalised AI coaching within 5 minutes of closure</li>
-          <li>Resolution steps automatically become a published SOP</li>
-          <li>SOP availability and usage tracked per incident per engineer</li>
-          <li>Commercial accountability classified — client-caused vs team-caused</li>
-          <li>Knowledge captured automatically — never lost when someone leaves</li>
-          <li>Coaching plans built from real incident data — not generic training</li>
+      <div class="problem-card gain reveal">
+        <div class="card-eye gain">✦ &nbsp;What DeliveryIQ delivers</div>
+        <h3>Every incident makes your organisation smarter.</h3>
+        <ul class="prob-list">
+          <li><span class="icon" style="color:var(--emerald);">✓</span>Engineers receive personalised development after every incident</li>
+          <li><span class="icon" style="color:var(--emerald);">✓</span>Knowledge is captured automatically — never lost</li>
+          <li><span class="icon" style="color:var(--emerald);">✓</span>Managers see team improvement without effort</li>
+          <li><span class="icon" style="color:var(--emerald);">✓</span>SLA evidence is built automatically — commercially ready</li>
+          <li><span class="icon" style="color:var(--emerald);">✓</span>Development is targeted — based on real incident gaps</li>
+          <li><span class="icon" style="color:var(--emerald);">✓</span>Coverage risks are visible before they become crises</li>
         </ul>
       </div>
     </div>
   </div>
 </section>
 
-<!-- LIFECYCLE -->
-<section id="how">
+<!-- OUTCOMES -->
+<section id="outcomes">
   <div class="wrap">
-    <div class="section-eye reveal">Core architecture</div>
-    <h2 class="section-h reveal">One lifecycle. Four intelligence outputs.</h2>
-    <p class="section-sub reveal">DeliveryIQ captures every stage of every incident — from detection through closure — and generates four types of intelligence from that single data source.</p>
+    <div class="section-eye reveal">What DeliveryIQ delivers</div>
+    <h2 class="section-h reveal">Five outcomes.<br>One platform. No extra effort.</h2>
+    <p class="section-sub reveal">DeliveryIQ connects to your existing tools and delivers five measurable outcomes — automatically, after every incident.</p>
 
-    <div class="lc-wrap reveal">
-      <div class="lc-top">Incident lifecycle → DeliveryIQ engine → Intelligence outputs</div>
-      <div class="lc-flow">
-        <div class="lc-item">
-          <div class="lc-num" style="color:#F87171;border-color:rgba(248,113,113,0.3);background:rgba(248,113,113,0.08);">1</div>
-          <div class="lc-name" style="color:#F87171;">Detection</div>
-        </div>
-        <div class="lc-item">
-          <div class="lc-num" style="color:#FB923C;border-color:rgba(251,146,60,0.3);background:rgba(251,146,60,0.08);">2</div>
-          <div class="lc-name" style="color:#FB923C;">Creation</div>
-        </div>
-        <div class="lc-item">
-          <div class="lc-num" style="color:#FCD34D;border-color:rgba(252,211,77,0.3);background:rgba(252,211,77,0.08);">3</div>
-          <div class="lc-name" style="color:#FCD34D;">Assignment</div>
-        </div>
-        <div class="lc-item">
-          <div class="lc-num" style="color:#34D399;border-color:rgba(52,211,153,0.3);background:rgba(52,211,153,0.08);">4</div>
-          <div class="lc-name" style="color:#34D399;">Diagnosis</div>
-        </div>
-        <div class="lc-item">
-          <div class="lc-num" style="color:#60A5FA;border-color:rgba(96,165,250,0.3);background:rgba(96,165,250,0.08);">5</div>
-          <div class="lc-name" style="color:#60A5FA;">Escalation</div>
-        </div>
-        <div class="lc-item">
-          <div class="lc-num" style="color:#22D3EE;border-color:rgba(34,211,238,0.3);background:rgba(34,211,238,0.08);">6</div>
-          <div class="lc-name" style="color:#22D3EE;">Resolution</div>
-        </div>
-        <div class="lc-item">
-          <div class="lc-num" style="color:#A78BFA;border-color:rgba(167,139,250,0.3);background:rgba(167,139,250,0.08);">7</div>
-          <div class="lc-name" style="color:#A78BFA;">Closure</div>
-        </div>
-        <div class="lc-item">
-          <div class="lc-num" style="background:var(--grad);color:white;border-color:transparent;box-shadow:0 0 20px rgba(14,165,233,0.3);">8</div>
-          <div class="lc-name" style="color:var(--signal2);">Intelligence</div>
-        </div>
+    <div class="outcomes-grid">
+      <div class="outcome-card reveal">
+        <div class="outcome-icon">🎯</div>
+        <div class="outcome-title">Engineers develop continuously</div>
+        <div class="outcome-desc">Every engineer receives personalised development based on how they actually handle incidents — not generic training. Improvement is measurable and consistent.</div>
       </div>
-      <div class="lc-outputs">
-        <div class="lc-out">
-          <div class="lc-out-icon">📊</div>
-          <div class="lc-out-name">SLA Data</div>
-          <div class="lc-out-desc">Which lifecycle stage caused the breach. Commercial evidence for client QBRs.</div>
-        </div>
-        <div class="lc-out">
-          <div class="lc-out-icon">👤</div>
-          <div class="lc-out-name">Engineer Performance</div>
-          <div class="lc-out-desc">Time per stage. Deviation from optimal path. Improvement trends over time.</div>
-        </div>
-        <div class="lc-out">
-          <div class="lc-out-icon">📄</div>
-          <div class="lc-out-name">SOP Availability</div>
-          <div class="lc-out-desc">Was an SOP available, attached, and followed? Auto-generate missing ones.</div>
-        </div>
-        <div class="lc-out">
-          <div class="lc-out-icon">🎯</div>
-          <div class="lc-out-name">Coaching Plan</div>
-          <div class="lc-out-desc">Personalised per engineer. Based on all three data sources. Updated after every incident.</div>
-        </div>
+      <div class="outcome-card reveal">
+        <div class="outcome-icon">📊</div>
+        <div class="outcome-title">SLA is protected commercially</div>
+        <div class="outcome-desc">Understand your true SLA performance. Know which incidents were genuinely within your control — and have the evidence to demonstrate it when needed.</div>
       </div>
-    </div>
-  </div>
-</section>
-
-<!-- MODULES -->
-<section id="modules">
-  <div class="wrap">
-    <div class="section-eye reveal">Five modules</div>
-    <h2 class="section-h reveal">One platform. Five intelligence layers.</h2>
-    <p class="section-sub reveal">Start with one module. Add more as you grow. All powered by a single incident lifecycle data source.</p>
-
-    <div class="modules-grid">
-      <div class="module-card mod-c1 reveal">
-        <div class="mod-tag t1">Coach</div>
-        <div class="mod-name">Individual Engineer Intelligence</div>
-        <div class="mod-desc">AI generates a personalised coaching report for every engineer after every incident. What they did well. Where they lost time. What to do differently. Delivered within 5 minutes of ticket closure.</div>
+      <div class="outcome-card reveal">
+        <div class="outcome-icon">📄</div>
+        <div class="outcome-title">Knowledge is captured automatically</div>
+        <div class="outcome-desc">Every resolution builds your organisation's knowledge base. No manual documentation effort. Institutional knowledge grows with every incident your team handles.</div>
       </div>
-      <div class="module-card mod-c2 reveal">
-        <div class="mod-tag t2">Predict</div>
-        <div class="mod-name">Predictive Incident Prevention</div>
-        <div class="mod-desc">Analyses patterns across log anomalies, performance trends, change history, and calendar risk to predict incidents before they occur — with recommended preventive actions.</div>
+      <div class="outcome-card reveal">
+        <div class="outcome-icon">🛡️</div>
+        <div class="outcome-title">Incidents are prevented proactively</div>
+        <div class="outcome-desc">Patterns across your environment are continuously monitored. Risks are identified before they become incidents — before your clients feel the impact.</div>
       </div>
-      <div class="module-card mod-c3 reveal">
-        <div class="mod-tag t3">Know</div>
-        <div class="mod-name">Automatic SOP Generation</div>
-        <div class="mod-desc">Every incident resolution is observed and structured into a draft SOP automatically. One click to publish. Knowledge capture with zero manual effort.</div>
+      <div class="outcome-card reveal">
+        <div class="outcome-icon">👥</div>
+        <div class="outcome-title">Team resilience is always visible</div>
+        <div class="outcome-desc">Coverage gaps, single-engineer dependencies, and capability risks are identified automatically — before absence or attrition creates a delivery crisis.</div>
       </div>
-      <div class="module-card mod-c4 reveal">
-        <div class="mod-tag t4">Build</div>
-        <div class="mod-name">Cross-Training Intelligence</div>
-        <div class="mod-desc">Tracks individual coverage distribution across applications and incident types. Identifies gaps before leave or attrition creates a crisis. Recommends targeted cross-training sessions.</div>
-      </div>
-      <div class="module-card mod-c5 reveal">
-        <div class="mod-tag t5">Guard</div>
-        <div class="mod-name">Commercial SLA Protection</div>
-        <div class="mod-desc">Automatically classifies every incident by accountability — delivery team, client infrastructure, third-party, or development. Monthly evidence reports for contractual protection.</div>
-      </div>
-      <div class="module-card reveal" style="display:flex;align-items:center;justify-content:center;border-style:dashed;background:rgba(255,255,255,0.01);">
+      <div class="outcome-card reveal" style="border-style:dashed;background:rgba(255,255,255,0.01);display:flex;align-items:center;justify-content:center;">
         <div style="text-align:center;padding:20px;">
           <div style="font-size:28px;margin-bottom:12px;">⚡</div>
-          <div class="mod-name" style="font-size:16px;margin-bottom:8px;">Agentic Layer</div>
-          <div class="mod-desc">Coming 2027 — AI agents that act autonomously on incident response, coaching, and knowledge capture. Set outcomes. DeliveryIQ achieves them.</div>
+          <div class="outcome-title" style="font-size:16px;margin-bottom:8px;">Works with what you have</div>
+          <div class="outcome-desc">No replacement of existing tools. DeliveryIQ adds intelligence on top of your current ITSM and monitoring setup.</div>
         </div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- HOW IT WORKS -->
+<!-- WHO -->
 <section>
   <div class="wrap">
-    <div class="section-eye reveal">Integration</div>
-    <h2 class="section-h reveal">Works with what you have.<br>Or without anything.</h2>
+    <div class="section-eye reveal">Who DeliveryIQ serves</div>
+    <h2 class="section-h reveal">Built for IT delivery organisations<br>of every type.</h2>
 
-    <div class="how-grid">
-      <div class="how-steps">
-        <div class="how-step reveal">
-          <div class="step-num">1</div>
-          <div class="step-content">
-            <h4>Connect your ticketing system</h4>
-            <p>Webhook or API connection to ServiceNow, Jira, Freshservice, PagerDuty, or any ITSM tool. Setup in 30 minutes. No disruption to existing workflows.</p>
-          </div>
-        </div>
-        <div class="how-step reveal">
-          <div class="step-num">2</div>
-          <div class="step-content">
-            <h4>No ticketing system? No problem.</h4>
-            <p>DeliveryIQ includes a lightweight incident capture app for teams using email, WhatsApp, or Excel. Works for any team regardless of tooling maturity.</p>
-          </div>
-        </div>
-        <div class="how-step reveal">
-          <div class="step-num">3</div>
-          <div class="step-content">
-            <h4>DeliveryIQ captures every lifecycle stage</h4>
-            <p>Detection, assignment, diagnosis, escalation, resolution, closure — every event timestamped and analysed against benchmarks automatically.</p>
-          </div>
-        </div>
-        <div class="how-step reveal">
-          <div class="step-num">4</div>
-          <div class="step-content">
-            <h4>Intelligence delivered to the right people</h4>
-            <p>Engineers receive coaching. Managers see performance trends. Executives see SLA evidence. All from a single incident lifecycle data source.</p>
-          </div>
-        </div>
+    <div class="who-grid">
+      <div class="who-card featured reveal">
+        <div class="who-tag msp">Managed Service Providers</div>
+        <h3>Protect your delivery commercially.</h3>
+        <p>When you manage multiple client accounts with shared teams and different SLA contracts — DeliveryIQ gives you the evidence, the intelligence, and the protection you need.</p>
+        <ul class="who-benefits">
+          <li>True SLA performance per client account</li>
+          <li>Commercial evidence when SLA is disputed</li>
+          <li>Engineer performance across all accounts</li>
+          <li>Coverage risk per client before it materialises</li>
+          <li>Knowledge captured per client environment</li>
+        </ul>
       </div>
-
-      <div class="how-visual reveal">
-        <div class="vis-header">
-          <div class="vis-dots">
-            <div class="vis-dot" style="background:#FF5F57;"></div>
-            <div class="vis-dot" style="background:#FFBD2E;"></div>
-            <div class="vis-dot" style="background:#28C840;"></div>
-          </div>
-          <div class="vis-title">deliveryiq.tech / coach / INC-12345</div>
-        </div>
-        <div style="font-size:11px;color:var(--muted);font-family:'Geist Mono',monospace;margin-bottom:20px;">AI COACHING REPORT — GENERATED 14:23:07</div>
-
-        <div class="vis-row">
-          <div class="vis-icon" style="background:rgba(52,211,153,0.1);">✓</div>
-          <div class="vis-text">
-            <h5>Escalation decision — Excellent</h5>
-            <p>Correctly escalated to L3 at 14:08. Within the 15-minute SLA threshold. Communication to client was timely and accurate.</p>
-            <div class="vis-bar"><div class="vis-fill" style="width:94%;background:linear-gradient(90deg,#34D399,#059669);"></div></div>
-          </div>
-        </div>
-
-        <div class="vis-row">
-          <div class="vis-icon" style="background:rgba(251,146,60,0.1);">!</div>
-          <div class="vis-text">
-            <h5>Database diagnosis — 23 min (benchmark: 12 min)</h5>
-            <p>Network checks performed before log analysis. SOP-DB-003 recommends logs first for this incident type. Consider reviewing the SOP before next DB incident.</p>
-            <div class="vis-bar"><div class="vis-fill" style="width:52%;background:linear-gradient(90deg,#FB923C,#D97706);"></div></div>
-          </div>
-        </div>
-
-        <div class="vis-row" style="margin-bottom:0;">
-          <div class="vis-icon" style="background:rgba(96,165,250,0.1);">↑</div>
-          <div class="vis-text">
-            <h5>Improvement since last month</h5>
-            <p>MTTR reduced from 47min to 38min. SOP adherence improved from 71% to 85%. Resolution quality trending upward.</p>
-            <div class="vis-bar"><div class="vis-fill" style="width:80%;background:linear-gradient(90deg,#60A5FA,#0EA5E9);"></div></div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- Integrations -->
-    <div class="integrations reveal">
-      <div class="int-label">Connects with any ticketing system</div>
-      <div class="int-logos">
-        <div class="int-badge">ServiceNow</div>
-        <div class="int-badge">Jira Service Mgmt</div>
-        <div class="int-badge">Freshservice</div>
-        <div class="int-badge">PagerDuty</div>
-        <div class="int-badge">OpsGenie</div>
-        <div class="int-badge">Azure Monitor</div>
-        <div class="int-badge">AWS CloudWatch</div>
-        <div class="int-badge">Nagios / Zabbix</div>
-        <div class="int-badge">Email Alerts</div>
-        <div class="int-plus">+ Any webhook source</div>
+      <div class="who-card reveal">
+        <div class="who-tag ent">Enterprise IT Teams</div>
+        <h3>Build a continuously improving team.</h3>
+        <p>When your internal IT team is responsible for enterprise application availability — DeliveryIQ ensures every incident makes your team and your organisation smarter.</p>
+        <ul class="who-benefits">
+          <li>Engineers develop from every incident they handle</li>
+          <li>Knowledge is never lost when someone leaves</li>
+          <li>SLA performance is understood and protected</li>
+          <li>Training is targeted to real capability gaps</li>
+          <li>Coverage is always visible to management</li>
+        </ul>
       </div>
     </div>
   </div>
 </section>
 
-<!-- PRICING -->
-<section id="pricing">
+<!-- WORKS WITH -->
+<section>
   <div class="wrap">
-    <div class="section-eye reveal">Pricing</div>
-    <h2 class="section-h reveal">Platform pricing. Not per user.</h2>
-    <p class="section-sub reveal">Flat monthly rate regardless of engineer headcount. Undercuts per-user ITSM tools by 80% while delivering capabilities they do not offer.</p>
-
-    <div class="pricing-grid">
-      <div class="price-card reveal">
-        <div class="price-tier">Starter</div>
-        <div class="price-name">DeliveryIQ Coach + Know</div>
-        <div class="price-amount">₹50K</div>
-        <div class="price-unit">per month · up to 25 engineers</div>
-        <ul class="price-features">
-          <li><span class="ok">✓</span> Complete incident lifecycle tracking</li>
-          <li><span class="ok">✓</span> AI coaching after every incident</li>
-          <li><span class="ok">✓</span> Automatic SOP generation</li>
-          <li><span class="ok">✓</span> SOP library and attachment</li>
-          <li><span class="ok">✓</span> Manager performance dashboard</li>
-          <li><span class="ok">✓</span> All ITSM integrations</li>
-          <li><span class="dim">—</span> Predictive prevention</li>
-          <li><span class="dim">—</span> Commercial protection</li>
-        </ul>
-        <a href="#contact" class="price-btn outlined">Get Started</a>
+    <div class="works-wrap reveal">
+      <div class="works-label">Works alongside your existing tools</div>
+      <div class="works-logos">
+        <div class="works-badge">ServiceNow</div>
+        <div class="works-badge">Jira Service Management</div>
+        <div class="works-badge">Freshservice</div>
+        <div class="works-badge">PagerDuty</div>
+        <div class="works-badge">OpsGenie</div>
+        <div class="works-badge">Azure Monitor</div>
+        <div class="works-badge">AWS CloudWatch</div>
+        <div class="works-badge">Datadog</div>
+        <div class="works-badge">Nagios</div>
+        <div class="works-badge">Zabbix</div>
+        <div class="works-badge">GitHub</div>
+        <div class="works-badge">Jenkins</div>
       </div>
-
-      <div class="price-card featured reveal">
-        <div class="featured-badge">Most Popular</div>
-        <div class="price-tier">Professional</div>
-        <div class="price-name">Coach + Know + Predict + Build</div>
-        <div class="price-amount">₹1.5L</div>
-        <div class="price-unit">per month · up to 150 engineers</div>
-        <ul class="price-features">
-          <li><span class="ok">✓</span> Everything in Starter</li>
-          <li><span class="ok">✓</span> Predictive incident prevention</li>
-          <li><span class="ok">✓</span> Cross-training intelligence</li>
-          <li><span class="ok">✓</span> Coverage gap analysis</li>
-          <li><span class="ok">✓</span> Leave calendar integration</li>
-          <li><span class="ok">✓</span> Priority support</li>
-          <li><span class="ok">✓</span> Azure / AWS private deployment</li>
-          <li><span class="dim">—</span> Commercial protection (Guard)</li>
-        </ul>
-        <a href="#contact" class="price-btn filled">Get Started</a>
-      </div>
-
-      <div class="price-card reveal">
-        <div class="price-tier">Enterprise</div>
-        <div class="price-name">All Five Modules</div>
-        <div class="price-amount">₹5L+</div>
-        <div class="price-unit">per month · unlimited engineers</div>
-        <ul class="price-features">
-          <li><span class="ok">✓</span> Everything in Professional</li>
-          <li><span class="ok">✓</span> Commercial SLA protection (Guard)</li>
-          <li><span class="ok">✓</span> Evidence reports for QBRs</li>
-          <li><span class="ok">✓</span> On-premise deployment option</li>
-          <li><span class="ok">✓</span> Custom ITSM integrations</li>
-          <li><span class="ok">✓</span> Dedicated Customer Success</li>
-          <li><span class="ok">✓</span> SLA guarantee</li>
-          <li><span class="ok">✓</span> Custom AI model training</li>
-        </ul>
-        <a href="#contact" class="price-btn outlined">Contact Us</a>
-      </div>
+      <div class="works-note">No replacement of existing tools. DeliveryIQ adds the intelligence layer on top of what you already use. If you have no formal ITSM tool — DeliveryIQ works without one too.</div>
     </div>
   </div>
 </section>
@@ -1104,7 +649,7 @@ footer {
 <section>
   <div class="wrap">
     <div class="section-eye reveal">Built by a practitioner</div>
-    <h2 class="section-h reveal">Not designed. Lived.</h2>
+    <h2 class="section-h reveal">Not designed in a boardroom.<br>Lived in the field.</h2>
 
     <div class="founder-wrap">
       <div class="founder-card reveal">
@@ -1112,30 +657,30 @@ footer {
         <div class="founder-name">Mahesh Nandre</div>
         <div class="founder-title">Founder — DeliveryIQ</div>
         <div class="founder-tags">
-          <span class="tag">24 years IT delivery</span>
-          <span class="tag">Global telecom delivery</span>
-          <span class="tag">BFSI · Cloud · MSP</span>
-          <span class="tag">150+ team leader</span>
-          <span class="tag">Pune, India</span>
+          <span class="ftag">24 years IT delivery</span>
+          <span class="ftag">Global enterprise</span>
+          <span class="ftag">Telecom and BFSI</span>
+          <span class="ftag">150+ team leader</span>
+          <span class="ftag">Pune, India</span>
         </div>
       </div>
       <div class="founder-story reveal">
-        <h3>"I built this manually for 12 years. Now I am automating it."</h3>
-        <p>In 2006, I designed a five-component operational excellence framework for a 400-application estate serving one of the world's largest telecoms companies — individual incident feedback per engineer, SOP creation targets, even incident distribution, cross-training, and published standards. The framework achieved 99.99% SLA and was recognised as best in class.</p>
-        <p>I spent the next 18 years applying the same principles across global enterprise IT delivery engagements in telecom, BFSI, and cloud sectors — turning around red projects, rescuing accounts under termination notice, and consistently delivering operational excellence through people development.</p>
-        <p>In May 2026, I realised: everything I did manually for 24 years, AI can now do automatically. DeliveryIQ is the automated version of a framework proven across four continents and some of the world's largest enterprises.</p>
+        <h3>"I built DeliveryIQ manually for 12 years. Now I am automating it."</h3>
+        <p>In 2006, I designed a five-component operational excellence framework for one of the world's largest enterprise IT delivery estates — individual feedback per engineer after every incident, knowledge capture targets, coverage tracking, cross-training programmes, and performance measurement. The framework achieved industry-leading SLA compliance and was recognised as best in class.</p>
+        <p>Over the next 18 years I applied the same principles across global enterprise IT delivery engagements — turning around accounts under termination notice, consistently improving team performance, and protecting delivery organisations commercially through evidence-based incident analysis.</p>
+        <p>In May 2026 I realised: everything I did manually for 24 years, AI can now do automatically after every incident. DeliveryIQ is the automated version of a framework proven across some of the world's largest enterprises.</p>
         <div class="founder-metrics">
           <div class="f-metric">
-            <div class="fv">99.99%</div>
-            <div class="fl">SLA ACHIEVED — ENTERPRISE</div>
+            <div class="fv">24yr</div>
+            <div class="fl">Practitioner experience</div>
           </div>
           <div class="f-metric">
-            <div class="fv">400+</div>
-            <div class="fl">APPS GOVERNED</div>
+            <div class="fv">Industry leading</div>
+            <div class="fl">SLA achieved</div>
           </div>
           <div class="f-metric">
-            <div class="fv">3×</div>
-            <div class="fl">RED PROJECT RESCUES</div>
+            <div class="fv">3+</div>
+            <div class="fl">Major rescues delivered</div>
           </div>
         </div>
       </div>
@@ -1143,17 +688,17 @@ footer {
   </div>
 </section>
 
-<!-- CTA -->
+<!-- EARLY ACCESS CTA -->
 <div class="wrap" id="contact">
-  <div class="cta-section reveal">
+  <div class="early-wrap reveal">
     <h2>Ready to make every incident a learning event?</h2>
-    <p>Request early access. We are onboarding pilot clients across India. Free 60-day pilot for qualifying IT delivery organisations.</p>
-    <div class="cta-actions">
-      <a href="mailto:mahesh.nandre@gmail.com?subject=DeliveryIQ Early Access Request&body=Hello Mahesh,%0A%0AI am interested in a pilot of DeliveryIQ for our IT delivery team.%0A%0AOrganisation:%0ATeam size:%0ACurrent ITSM tool:%0A%0AThank you" class="btn-primary">Request Early Access <span class="arrow">→</span></a>
-      <a href="mailto:mahesh.nandre@gmail.com?subject=DeliveryIQ Demo Request" class="btn-secondary">Schedule a Demo</a>
+    <p>We are onboarding early access clients across India. Free pilot for qualifying IT delivery organisations.</p>
+    <div class="early-actions">
+      <a href="mailto:mahesh.nandre@gmail.com?subject=DeliveryIQ Early Access Request&body=Hello Mahesh,%0A%0AI am interested in an early access pilot of DeliveryIQ.%0A%0AOrganisation:%0ARole:%0ATeam size:%0ACurrent ITSM tool:%0A%0AThank you" class="btn-primary">Request Early Access <span class="arrow">→</span></a>
+      <a href="mailto:mahesh.nandre@gmail.com?subject=DeliveryIQ Demo Request" class="btn-secondary">Schedule a Conversation</a>
     </div>
-    <div style="margin-top:32px;font-size:13px;color:var(--muted);">
-      Contact: mahesh.nandre@gmail.com &nbsp;·&nbsp; +91 7423077777 &nbsp;·&nbsp; Pune, India
+    <div class="early-note">
+      mahesh.nandre@gmail.com &nbsp;·&nbsp; +91 7423077777 &nbsp;·&nbsp; Pune, India
     </div>
   </div>
 </div>
@@ -1164,54 +709,33 @@ footer {
     <div class="footer-inner">
       <div>
         <div class="footer-logo">DeliveryIQ™</div>
-        <div style="font-size:12px;color:var(--muted);margin-top:4px;">Incident Lifecycle Intelligence Platform</div>
+        <div style="font-size:12px;color:var(--muted);margin-top:4px;">Delivery Intelligence Platform</div>
         <div class="footer-domains">
           <span class="domain-badge">deliveryiq.tech</span>
           <span class="domain-badge">deliveryiq.co.in</span>
           <span class="domain-badge">deliveryiq.cloud</span>
         </div>
       </div>
-      <div class="footer-links">
-        <a href="#how">How it works</a>
-        <a href="#modules">Modules</a>
-        <a href="#pricing">Pricing</a>
-        <a href="mailto:mahesh.nandre@gmail.com">Contact</a>
-      </div>
       <div class="footer-right">
         <div>© 2026 DeliveryIQ. All rights reserved.</div>
-        <div style="margin-top:4px;">Trademark filed · IP protected · Patent pending</div>
-        <div style="margin-top:4px;">Invented and founded by Mahesh Nandre · Pune, India</div>
+        <div>Trademark filed · Patent pending</div>
+        <div>Founded by Mahesh Nandre · Pune, India</div>
       </div>
     </div>
   </div>
 </footer>
 
 <script>
-// Scroll reveal
 const reveals = document.querySelectorAll('.reveal');
 const observer = new IntersectionObserver((entries) => {
   entries.forEach((entry, i) => {
     if (entry.isIntersecting) {
-      setTimeout(() => entry.target.classList.add('visible'), i * 60);
+      setTimeout(() => entry.target.classList.add('visible'), i * 80);
       observer.unobserve(entry.target);
     }
   });
-}, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
+}, { threshold:0.08, rootMargin:'0px 0px -40px 0px' });
 reveals.forEach(el => observer.observe(el));
-
-// Smooth nav highlight
-const sections = document.querySelectorAll('section[id], div[id]');
-window.addEventListener('scroll', () => {
-  const y = window.scrollY + 120;
-  sections.forEach(sec => {
-    const top = sec.offsetTop;
-    const bot = top + sec.offsetHeight;
-    const link = document.querySelector(`a[href="#${sec.id}"]`);
-    if (link) {
-      link.style.color = (y >= top && y < bot) ? 'var(--snow)' : '';
-    }
-  });
-});
 </script>
 </body>
 </html>
