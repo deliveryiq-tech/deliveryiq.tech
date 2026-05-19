@@ -3,733 +3,337 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="DeliveryIQ — The intelligence layer for your IT delivery organisation. Develop . Protect your SLA. Automate.">
-<meta name="keywords" content="IT delivery intelligence, incident management, SLA protection, engineer development, DeliveryIQ">
-<meta property="og:title" content="DeliveryIQ — Delivery Intelligence Platform">
-<meta property="og:description" content="Your incidents happen. DeliveryIQ makes your organisation smarter from every one.">
+<meta name="description" content="DeliveryIQ™ — The intelligence layer for IT delivery organisations. Making your delivery smarter.">
+<meta property="og:title" content="DeliveryIQ™ — Delivery Intelligence Platform">
+<meta property="og:description" content="DeliveryIQ™ — Making IT delivery organisations smarter.">
 <meta property="og:url" content="https://deliveryiq.tech">
 <title>DeliveryIQ™ — Delivery Intelligence Platform</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Geist:wght@300;400;500;600;700&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet">
+<!-- Private Analytics: Sign up free at goatcounter.com, replace YOUR-SITE-CODE -->
+<script data-goatcounter="https://YOUR-SITE-CODE.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
 <style>
-:root {
-  --ink:    #06090F;
-  --ink2:   #0D1424;
-  --steel:  #141E30;
-  --slate:  #1C2B42;
-  --mid:    #2E4060;
-  --muted:  #64748B;
-  --dim:    #94A3B8;
-  --pale:   #CBD5E1;
-  --snow:   #F1F5F9;
-  --white:  #FFFFFF;
-  --signal: #0EA5E9;
-  --signal2:#38BDF8;
-  --teal:   #14B8A6;
-  --emerald:#10B981;
-  --amber:  #F59E0B;
-  --grad:   linear-gradient(135deg, #0EA5E9 0%, #14B8A6 100%);
-  --card:   rgba(20,30,48,0.6);
-  --border: rgba(46,64,96,0.5);
-  --r:      12px;
-  --r2:     20px;
+:root{
+  --ink:#06090F;--muted:#64748B;--dim:#94A3B8;--pale:#CBD5E1;--snow:#F1F5F9;--white:#FFFFFF;
+  --signal:#0EA5E9;--s2:#38BDF8;--teal:#14B8A6;--emerald:#10B981;
+  --grad:linear-gradient(135deg,#0EA5E9 0%,#14B8A6 100%);
+  --card:rgba(20,30,48,0.6);--border:rgba(46,64,96,0.5);--r2:20px;
 }
-
-*, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
-html { scroll-behavior:smooth; }
-body {
-  background: var(--ink);
-  color: var(--pale);
-  font-family: 'Geist', sans-serif;
-  font-size: 16px;
-  line-height: 1.6;
-  overflow-x: hidden;
-  -webkit-font-smoothing: antialiased;
-}
-
-body::before {
-  content:'';
-  position:fixed; inset:0; z-index:0; pointer-events:none;
-  background-image:
-    linear-gradient(rgba(14,165,233,0.03) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(14,165,233,0.03) 1px, transparent 1px);
-  background-size: 60px 60px;
-}
-
-.orb {
-  position:fixed; border-radius:50%;
-  pointer-events:none; z-index:0;
-  filter:blur(120px); opacity:0.10;
-}
-.orb-1 { width:700px; height:700px; background:#0EA5E9; top:-200px; right:-150px; }
-.orb-2 { width:500px; height:500px; background:#14B8A6; bottom:-150px; left:-150px; }
-
-.wrap { max-width:1080px; margin:0 auto; padding:0 32px; position:relative; z-index:1; }
-
-/* NAV */
-nav {
-  position:fixed; top:0; left:0; right:0; z-index:100;
-  padding:0 32px; height:64px;
-  display:flex; align-items:center; justify-content:space-between;
-  background:rgba(6,9,15,0.90);
-  backdrop-filter:blur(24px);
-  border-bottom:1px solid var(--border);
-}
-.logo {
-  font-family:'Geist Mono',monospace;
-  font-size:18px; font-weight:600;
-  background:var(--grad);
-  -webkit-background-clip:text; -webkit-text-fill-color:transparent;
-}
-.logo sup { font-size:9px; -webkit-text-fill-color:rgba(14,165,233,0.6); }
-.nav-cta {
-  font-size:13px; font-weight:600;
-  background:var(--grad); color:var(--white);
-  padding:8px 20px; border-radius:8px;
-  text-decoration:none;
-  transition:opacity 0.2s, transform 0.2s;
-}
-.nav-cta:hover { opacity:0.85; transform:translateY(-1px); }
-
-/* HERO */
-.hero {
-  min-height:100vh;
-  display:flex; flex-direction:column;
-  justify-content:center;
-  padding-top:80px;
-}
-.eyebrow {
-  display:inline-flex; align-items:center; gap:8px;
-  background:rgba(14,165,233,0.08);
-  border:1px solid rgba(14,165,233,0.2);
-  border-radius:100px;
-  padding:5px 16px; margin-bottom:36px;
-  font-family:'Geist Mono',monospace;
-  font-size:11px; color:var(--signal2);
-  letter-spacing:0.08em; text-transform:uppercase;
-  width:fit-content;
-  animation:fadeUp 0.8s ease 0.1s both;
-}
-.eyebrow::before {
-  content:''; width:5px; height:5px; border-radius:50%;
-  background:var(--signal);
-  animation:blink 2s infinite;
-}
-@keyframes blink { 0%,100%{opacity:1;} 50%{opacity:0.3;} }
-
-.hero h1 {
-  font-family:'Instrument Serif',Georgia,serif;
-  font-size:clamp(44px,7vw,78px);
-  font-weight:400; line-height:1.06;
-  letter-spacing:-0.02em; color:var(--snow);
-  margin-bottom:28px;
-  animation:fadeUp 0.8s ease 0.2s both;
-}
-.hero h1 em {
-  font-style:italic;
-  background:var(--grad);
-  -webkit-background-clip:text; -webkit-text-fill-color:transparent;
-}
-.hero-sub {
-  font-size:19px; font-weight:300;
-  color:var(--dim); line-height:1.75;
-  max-width:560px; margin-bottom:52px;
-  animation:fadeUp 0.8s ease 0.3s both;
-}
-.hero-sub strong { color:var(--pale); font-weight:500; }
-
-.hero-actions {
-  display:flex; gap:16px; flex-wrap:wrap;
-  margin-bottom:80px;
-  animation:fadeUp 0.8s ease 0.4s both;
-}
-.btn-primary {
-  display:inline-flex; align-items:center; gap:8px;
-  background:var(--grad); color:var(--white);
-  font-weight:600; font-size:15px;
-  padding:14px 30px; border-radius:10px;
-  text-decoration:none;
-  transition:all 0.25s;
-  box-shadow:0 0 40px rgba(14,165,233,0.2);
-}
-.btn-primary:hover { transform:translateY(-2px); box-shadow:0 0 60px rgba(14,165,233,0.35); }
-.btn-secondary {
-  display:inline-flex; align-items:center; gap:8px;
-  background:transparent; color:var(--pale);
-  font-weight:500; font-size:15px;
-  padding:14px 30px; border-radius:10px;
-  text-decoration:none;
-  border:1px solid var(--border);
-  transition:all 0.25s;
-}
-.btn-secondary:hover { border-color:var(--signal); color:var(--signal2); }
-.arrow { transition:transform 0.2s; }
-.btn-primary:hover .arrow { transform:translateX(4px); }
-
-/* STAT STRIP */
-.stat-strip {
-  display:flex; gap:0;
-  border:1px solid var(--border);
-  border-radius:var(--r2);
-  background:var(--card);
-  backdrop-filter:blur(16px);
-  overflow:hidden;
-  animation:fadeUp 0.8s ease 0.5s both;
-}
-.stat { flex:1; padding:28px 24px; border-right:1px solid var(--border); }
-.stat:last-child { border-right:none; }
-.stat-val {
-  font-family:'Geist Mono',monospace;
-  font-size:30px; font-weight:600;
-  background:var(--grad);
-  -webkit-background-clip:text; -webkit-text-fill-color:transparent;
-  margin-bottom:4px;
-}
-.stat-label { font-size:11px; color:var(--muted); letter-spacing:0.05em; text-transform:uppercase; }
-
-/* SECTIONS */
-section { padding:100px 0; }
-.section-eye {
-  font-family:'Geist Mono',monospace;
-  font-size:11px; letter-spacing:0.12em;
-  text-transform:uppercase; color:var(--signal);
-  margin-bottom:16px;
-}
-.section-h {
-  font-family:'Instrument Serif',Georgia,serif;
-  font-size:clamp(30px,4vw,46px);
-  font-weight:400; line-height:1.15;
-  letter-spacing:-0.02em; color:var(--snow);
-  margin-bottom:16px;
-}
-.section-sub {
-  font-size:17px; color:var(--dim);
-  max-width:560px; line-height:1.75;
-  font-weight:300;
-}
-
-/* PROBLEM */
-.problem-grid {
-  display:grid; grid-template-columns:1fr 1fr;
-  gap:24px; margin-top:56px;
-}
-.problem-card {
-  padding:36px;
-  background:var(--card);
-  border:1px solid var(--border);
-  border-radius:var(--r2);
-  backdrop-filter:blur(16px);
-}
-.problem-card.pain { border-color:rgba(239,68,68,0.2); }
-.problem-card.gain { border-color:rgba(14,165,233,0.25); background:rgba(14,165,233,0.04); }
-.card-eye {
-  font-family:'Geist Mono',monospace;
-  font-size:11px; letter-spacing:0.1em;
-  text-transform:uppercase; margin-bottom:20px;
-  display:flex; align-items:center; gap:8px;
-}
-.card-eye.pain { color:#F87171; }
-.card-eye.gain { color:var(--signal); }
-.problem-card h3 {
-  font-family:'Instrument Serif',Georgia,serif;
-  font-size:22px; color:var(--snow); margin-bottom:20px;
-}
-.prob-list { list-style:none; display:flex; flex-direction:column; gap:12px; }
-.prob-list li {
-  display:flex; gap:10px; font-size:14px;
-  color:var(--dim); align-items:flex-start; line-height:1.6;
-}
-.prob-list li .icon { flex-shrink:0; margin-top:2px; }
-
-/* OUTCOMES */
-.outcomes-grid {
-  display:grid; grid-template-columns:repeat(3,1fr);
-  gap:20px; margin-top:56px;
-}
-.outcome-card {
-  padding:32px;
-  background:var(--card);
-  border:1px solid var(--border);
-  border-radius:var(--r2);
-  backdrop-filter:blur(16px);
-  transition:all 0.3s; position:relative; overflow:hidden;
-}
-.outcome-card::before {
-  content:''; position:absolute; top:0; left:0; right:0; height:2px;
-  background:var(--grad); opacity:0; transition:opacity 0.3s;
-}
-.outcome-card:hover { transform:translateY(-4px); border-color:rgba(14,165,233,0.3); }
-.outcome-card:hover::before { opacity:1; }
-.outcome-icon { font-size:28px; margin-bottom:16px; }
-.outcome-title {
-  font-family:'Instrument Serif',Georgia,serif;
-  font-size:20px; color:var(--snow); margin-bottom:10px;
-}
-.outcome-desc { font-size:13px; color:var(--muted); line-height:1.65; }
-
-/* WHO */
-.who-grid {
-  display:grid; grid-template-columns:1fr 1fr;
-  gap:24px; margin-top:56px;
-}
-.who-card {
-  padding:36px;
-  background:var(--card);
-  border:1px solid var(--border);
-  border-radius:var(--r2);
-  backdrop-filter:blur(16px);
-}
-.who-card.featured { border-color:rgba(14,165,233,0.4); background:rgba(14,165,233,0.05); }
-.who-tag {
-  font-family:'Geist Mono',monospace;
-  font-size:10px; letter-spacing:0.1em; text-transform:uppercase;
-  padding:4px 12px; border-radius:100px;
-  display:inline-block; margin-bottom:20px;
-}
-.who-tag.msp { background:rgba(14,165,233,0.1); color:var(--signal2); }
-.who-tag.ent { background:rgba(20,184,166,0.1); color:#34D399; }
-.who-card h3 {
-  font-family:'Instrument Serif',Georgia,serif;
-  font-size:22px; color:var(--snow); margin-bottom:12px;
-}
-.who-card p { font-size:14px; color:var(--dim); line-height:1.7; margin-bottom:16px; }
-.who-benefits { list-style:none; display:flex; flex-direction:column; gap:8px; }
-.who-benefits li {
-  display:flex; gap:8px; font-size:13px; color:var(--dim);
-}
-.who-benefits li::before { content:'✓'; color:var(--emerald); flex-shrink:0; font-weight:700; }
-
-/* WORKS WITH */
-.works-wrap {
-  margin-top:56px;
-  background:var(--card);
-  border:1px solid var(--border);
-  border-radius:var(--r2);
-  padding:48px;
-  text-align:center;
-  backdrop-filter:blur(16px);
-}
-.works-label {
-  font-family:'Geist Mono',monospace;
-  font-size:11px; color:var(--muted);
-  letter-spacing:0.1em; text-transform:uppercase;
-  margin-bottom:32px;
-}
-.works-logos {
-  display:flex; flex-wrap:wrap;
-  justify-content:center; gap:10px;
-}
-.works-badge {
-  background:rgba(255,255,255,0.04);
-  border:1px solid var(--border);
-  border-radius:10px; padding:10px 20px;
-  font-size:13px; font-weight:500;
-  color:var(--dim);
-  transition:all 0.2s;
-}
-.works-badge:hover { border-color:rgba(14,165,233,0.3); color:var(--signal2); }
-.works-note {
-  margin-top:24px; font-size:13px; color:var(--muted);
-  font-style:italic;
-}
-
-/* FOUNDER */
-.founder-wrap {
-  display:grid; grid-template-columns:1fr 2fr;
-  gap:48px; align-items:center; margin-top:56px;
-}
-.founder-card {
-  background:var(--card);
-  border:1px solid var(--border);
-  border-radius:var(--r2);
-  padding:40px; text-align:center;
-  backdrop-filter:blur(16px);
-}
-.founder-avatar {
-  width:80px; height:80px; border-radius:50%;
-  background:var(--grad);
-  display:flex; align-items:center; justify-content:center;
-  font-family:'Instrument Serif',Georgia,serif;
-  font-size:32px; color:var(--white);
-  margin:0 auto 20px;
-  box-shadow:0 0 40px rgba(14,165,233,0.25);
-}
-.founder-name {
-  font-family:'Instrument Serif',Georgia,serif;
-  font-size:22px; color:var(--snow); margin-bottom:4px;
-}
-.founder-title { font-size:13px; color:var(--muted); margin-bottom:20px; }
-.founder-tags { display:flex; flex-wrap:wrap; gap:6px; justify-content:center; }
-.ftag {
-  font-size:11px; padding:4px 10px; border-radius:100px;
-  background:rgba(14,165,233,0.08);
-  border:1px solid rgba(14,165,233,0.15);
-  color:var(--signal2);
-}
-.founder-story h3 {
-  font-family:'Instrument Serif',Georgia,serif;
-  font-size:28px; color:var(--snow); margin-bottom:20px; line-height:1.3;
-}
-.founder-story p {
-  font-size:15px; color:var(--dim); line-height:1.8; margin-bottom:16px;
-}
-.founder-metrics {
-  display:flex; gap:32px; margin-top:28px;
-  padding-top:28px; border-top:1px solid var(--border);
-}
-.f-metric .fv {
-  font-family:'Geist Mono',monospace;
-  font-size:26px; font-weight:600;
-  background:var(--grad);
-  -webkit-background-clip:text; -webkit-text-fill-color:transparent;
-}
-.f-metric .fl { font-size:11px; color:var(--muted); margin-top:2px; text-transform:uppercase; letter-spacing:0.04em; }
-
-/* EARLY ACCESS */
-.early-wrap {
-  margin:0 0 100px;
-  background:var(--card);
-  border:1px solid var(--border);
-  border-radius:var(--r2);
-  padding:80px 64px;
-  text-align:center;
-  backdrop-filter:blur(16px);
-  position:relative; overflow:hidden;
-}
-.early-wrap::before {
-  content:''; position:absolute; top:0; left:0; right:0; height:1px;
-  background:var(--grad); opacity:0.5;
-}
-.early-wrap h2 {
-  font-family:'Instrument Serif',Georgia,serif;
-  font-size:clamp(30px,4vw,50px);
-  color:var(--snow); margin-bottom:16px; letter-spacing:-0.02em;
-}
-.early-wrap p {
-  font-size:17px; color:var(--dim);
-  max-width:480px; margin:0 auto 40px;
-  line-height:1.7; font-weight:300;
-}
-.early-actions { display:flex; gap:16px; justify-content:center; flex-wrap:wrap; }
-.early-note { margin-top:24px; font-size:13px; color:var(--muted); }
-
-/* FOOTER */
-footer { border-top:1px solid var(--border); padding:48px 0; }
-.footer-inner {
-  display:flex; justify-content:space-between;
-  align-items:center; flex-wrap:wrap; gap:24px;
-}
-.footer-logo {
-  font-family:'Geist Mono',monospace;
-  font-size:16px; font-weight:600;
-  background:var(--grad);
-  -webkit-background-clip:text; -webkit-text-fill-color:transparent;
-}
-.footer-domains { display:flex; gap:8px; flex-wrap:wrap; margin-top:8px; }
-.domain-badge {
-  font-family:'Geist Mono',monospace;
-  font-size:11px; padding:3px 10px;
-  border:1px solid var(--border);
-  border-radius:6px; color:var(--muted);
-}
-.footer-right { font-size:12px; color:var(--muted); text-align:right; line-height:1.8; }
-
-/* ANIMATIONS */
-@keyframes fadeUp {
-  from { opacity:0; transform:translateY(24px); }
-  to { opacity:1; transform:translateY(0); }
-}
-.reveal {
-  opacity:0; transform:translateY(24px);
-  transition:opacity 0.7s ease, transform 0.7s ease;
-}
-.reveal.visible { opacity:1; transform:translateY(0); }
-
-/* RESPONSIVE */
-@media(max-width:900px) {
-  .problem-grid { grid-template-columns:1fr; }
-  .outcomes-grid { grid-template-columns:1fr 1fr; }
-  .who-grid { grid-template-columns:1fr; }
-  .founder-wrap { grid-template-columns:1fr; }
-  .stat-strip { flex-direction:column; }
-  .stat { border-right:none; border-bottom:1px solid var(--border); }
-  .stat:last-child { border-bottom:none; }
-  .early-wrap { padding:48px 24px; }
-  .wrap { padding:0 20px; }
-  nav { padding:0 20px; }
-}
-@media(max-width:600px) {
-  .outcomes-grid { grid-template-columns:1fr; }
-  .founder-metrics { flex-wrap:wrap; gap:20px; }
-}
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{background:var(--ink);color:var(--pale);font-family:"Geist",sans-serif;font-size:16px;line-height:1.6;overflow-x:hidden;-webkit-font-smoothing:antialiased;}
+body::before{content:"";position:fixed;inset:0;z-index:0;pointer-events:none;background-image:linear-gradient(rgba(14,165,233,0.03) 1px,transparent 1px),linear-gradient(90deg,rgba(14,165,233,0.03) 1px,transparent 1px);background-size:60px 60px;}
+.orb{position:fixed;border-radius:50%;pointer-events:none;z-index:0;filter:blur(120px);opacity:0.10;}
+.o1{width:700px;height:700px;background:#0EA5E9;top:-200px;right:-150px;}
+.o2{width:500px;height:500px;background:#14B8A6;bottom:-150px;left:-150px;}
+.wrap{max-width:1080px;margin:0 auto;padding:0 32px;position:relative;z-index:1;}
+nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:0 32px;height:64px;display:flex;align-items:center;justify-content:space-between;background:rgba(6,9,15,0.92);backdrop-filter:blur(24px);border-bottom:1px solid var(--border);}
+.logo{font-family:"Geist Mono",monospace;font-size:19px;font-weight:700;background:var(--grad);-webkit-background-clip:text;-webkit-text-fill-color:transparent;}
+.nav-cta{font-size:13px;font-weight:600;background:var(--grad);color:var(--white);padding:9px 22px;border-radius:8px;text-decoration:none;transition:opacity 0.2s,transform 0.2s;}
+.nav-cta:hover{opacity:0.85;transform:translateY(-1px);}
+.hero{min-height:100vh;display:flex;flex-direction:column;justify-content:center;padding-top:80px;}
+.eyebrow{display:inline-flex;align-items:center;gap:8px;background:rgba(14,165,233,0.08);border:1px solid rgba(14,165,233,0.2);border-radius:100px;padding:5px 16px;margin-bottom:36px;font-family:"Geist Mono",monospace;font-size:11px;color:var(--s2);letter-spacing:0.08em;text-transform:uppercase;width:fit-content;animation:fadeUp 0.8s ease 0.1s both;}
+.eyebrow::before{content:"";width:5px;height:5px;border-radius:50%;background:var(--signal);animation:blink 2s infinite;}
+@keyframes blink{0%,100%{opacity:1;}50%{opacity:0.3;}}
+.hero h1{font-family:"Instrument Serif",Georgia,serif;font-size:clamp(44px,7vw,78px);font-weight:400;line-height:1.06;letter-spacing:-0.02em;color:var(--snow);margin-bottom:28px;animation:fadeUp 0.8s ease 0.2s both;}
+.hero h1 em{font-style:italic;background:var(--grad);-webkit-background-clip:text;-webkit-text-fill-color:transparent;}
+.hero-sub{font-size:19px;font-weight:300;color:var(--dim);line-height:1.75;max-width:560px;margin-bottom:52px;animation:fadeUp 0.8s ease 0.3s both;}
+.hero-sub strong{color:var(--pale);font-weight:500;}
+.hero-actions{display:flex;gap:16px;flex-wrap:wrap;margin-bottom:80px;animation:fadeUp 0.8s ease 0.4s both;}
+.btn-p{display:inline-flex;align-items:center;gap:8px;background:var(--grad);color:var(--white);font-weight:600;font-size:15px;padding:14px 30px;border-radius:10px;text-decoration:none;transition:all 0.25s;box-shadow:0 0 40px rgba(14,165,233,0.2);}
+.btn-p:hover{transform:translateY(-2px);box-shadow:0 0 60px rgba(14,165,233,0.35);}
+.btn-s{display:inline-flex;align-items:center;gap:8px;background:transparent;color:var(--pale);font-weight:500;font-size:15px;padding:14px 30px;border-radius:10px;text-decoration:none;border:1px solid var(--border);transition:all 0.25s;}
+.btn-s:hover{border-color:var(--signal);color:var(--s2);}
+.arr{transition:transform 0.2s;}
+.btn-p:hover .arr{transform:translateX(4px);}
+.stats{display:flex;border:1px solid var(--border);border-radius:var(--r2);background:var(--card);backdrop-filter:blur(16px);overflow:hidden;animation:fadeUp 0.8s ease 0.5s both;}
+.stat{flex:1;padding:28px 24px;border-right:1px solid var(--border);}
+.stat:last-child{border-right:none;}
+.sv{font-family:"Geist Mono",monospace;font-size:28px;font-weight:600;background:var(--grad);-webkit-background-clip:text;-webkit-text-fill-color:transparent;margin-bottom:4px;}
+.sl{font-size:11px;color:var(--muted);letter-spacing:0.05em;text-transform:uppercase;}
+section{padding:100px 0;}
+.eye{font-family:"Geist Mono",monospace;font-size:11px;letter-spacing:0.12em;text-transform:uppercase;color:var(--signal);margin-bottom:16px;}
+.sh{font-family:"Instrument Serif",Georgia,serif;font-size:clamp(30px,4vw,46px);font-weight:400;line-height:1.15;letter-spacing:-0.02em;color:var(--snow);margin-bottom:16px;}
+.ss{font-size:17px;color:var(--dim);max-width:560px;line-height:1.75;font-weight:300;}
+.ps-grid{display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-top:56px;}
+.ps{padding:36px;background:var(--card);border:1px solid var(--border);border-radius:var(--r2);backdrop-filter:blur(16px);}
+.ps.pain{border-color:rgba(239,68,68,0.2);}
+.ps.gain{border-color:rgba(14,165,233,0.25);background:rgba(14,165,233,0.04);}
+.pse{font-family:"Geist Mono",monospace;font-size:11px;letter-spacing:0.1em;text-transform:uppercase;margin-bottom:20px;display:flex;align-items:center;gap:8px;}
+.pse.p{color:#F87171;}.pse.s{color:var(--signal);}
+.ps h3{font-family:"Instrument Serif",Georgia,serif;font-size:22px;color:var(--snow);margin-bottom:20px;}
+.psl{list-style:none;display:flex;flex-direction:column;gap:12px;}
+.psl li{display:flex;gap:10px;font-size:14px;color:var(--dim);align-items:flex-start;line-height:1.6;}
+.vg{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-top:56px;}
+.vc{padding:32px;background:var(--card);border:1px solid var(--border);border-radius:var(--r2);backdrop-filter:blur(16px);transition:all 0.3s;position:relative;overflow:hidden;}
+.vc::before{content:"";position:absolute;top:0;left:0;right:0;height:2px;background:var(--grad);opacity:0;transition:opacity 0.3s;}
+.vc:hover{transform:translateY(-4px);border-color:rgba(14,165,233,0.3);}
+.vc:hover::before{opacity:1;}
+.vi{font-size:28px;margin-bottom:16px;}
+.vt{font-family:"Instrument Serif",Georgia,serif;font-size:20px;color:var(--snow);margin-bottom:10px;}
+.vd{font-size:13px;color:var(--muted);line-height:1.65;}
+.wg{display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-top:56px;}
+.wc{padding:36px;background:var(--card);border:1px solid var(--border);border-radius:var(--r2);backdrop-filter:blur(16px);}
+.wc.ft{border-color:rgba(14,165,233,0.4);background:rgba(14,165,233,0.05);}
+.wtag{font-family:"Geist Mono",monospace;font-size:10px;letter-spacing:0.1em;text-transform:uppercase;padding:4px 12px;border-radius:100px;display:inline-block;margin-bottom:20px;}
+.wm{background:rgba(14,165,233,0.1);color:var(--s2);}
+.we{background:rgba(20,184,166,0.1);color:#34D399;}
+.wc h3{font-family:"Instrument Serif",Georgia,serif;font-size:22px;color:var(--snow);margin-bottom:12px;}
+.wc p{font-size:14px;color:var(--dim);line-height:1.7;margin-bottom:16px;}
+.wl{list-style:none;display:flex;flex-direction:column;gap:8px;}
+.wl li{display:flex;gap:8px;font-size:13px;color:var(--dim);}
+.wl li::before{content:"✓";color:var(--emerald);flex-shrink:0;font-weight:700;}
+.ww{margin-top:56px;background:var(--card);border:1px solid var(--border);border-radius:var(--r2);padding:48px;text-align:center;backdrop-filter:blur(16px);}
+.wl2{font-family:"Geist Mono",monospace;font-size:11px;color:var(--muted);letter-spacing:0.1em;text-transform:uppercase;margin-bottom:32px;}
+.wbadges{display:flex;flex-wrap:wrap;justify-content:center;gap:10px;}
+.wb{background:rgba(255,255,255,0.04);border:1px solid var(--border);border-radius:10px;padding:10px 20px;font-size:13px;font-weight:500;color:var(--dim);transition:all 0.2s;}
+.wb:hover{border-color:rgba(14,165,233,0.3);color:var(--s2);}
+.wn{margin-top:24px;font-size:13px;color:var(--muted);font-style:italic;}
+.fw{display:grid;grid-template-columns:1fr 2fr;gap:48px;align-items:center;margin-top:56px;}
+.fc{background:var(--card);border:1px solid var(--border);border-radius:var(--r2);padding:40px;text-align:center;backdrop-filter:blur(16px);}
+.fav{width:80px;height:80px;border-radius:50%;background:var(--grad);display:flex;align-items:center;justify-content:center;font-family:"Instrument Serif",Georgia,serif;font-size:32px;color:var(--white);margin:0 auto 20px;box-shadow:0 0 40px rgba(14,165,233,0.25);}
+.fn{font-family:"Instrument Serif",Georgia,serif;font-size:22px;color:var(--snow);margin-bottom:4px;}
+.ft2{font-size:13px;color:var(--muted);margin-bottom:4px;}
+.fq{font-size:12px;color:var(--signal);font-weight:600;margin-bottom:20px;font-family:"Geist Mono",monospace;letter-spacing:0.05em;}
+.ftags{display:flex;flex-wrap:wrap;gap:6px;justify-content:center;}
+.ftag{font-size:11px;padding:4px 10px;border-radius:100px;background:rgba(14,165,233,0.08);border:1px solid rgba(14,165,233,0.15);color:var(--s2);}
+.fs h3{font-family:"Instrument Serif",Georgia,serif;font-size:26px;color:var(--snow);margin-bottom:20px;line-height:1.3;}
+.fs p{font-size:15px;color:var(--dim);line-height:1.8;margin-bottom:16px;}
+.fm{display:flex;gap:32px;margin-top:28px;padding-top:28px;border-top:1px solid var(--border);}
+.fmv{font-family:"Geist Mono",monospace;font-size:24px;font-weight:600;background:var(--grad);-webkit-background-clip:text;-webkit-text-fill-color:transparent;}
+.fml{font-size:11px;color:var(--muted);margin-top:2px;text-transform:uppercase;letter-spacing:0.04em;}
+.ctaw{margin:0 0 100px;background:var(--card);border:1px solid var(--border);border-radius:var(--r2);padding:80px 64px;text-align:center;backdrop-filter:blur(16px);position:relative;overflow:hidden;}
+.ctaw::before{content:"";position:absolute;top:0;left:0;right:0;height:1px;background:var(--grad);opacity:0.5;}
+.ctaw h2{font-family:"Instrument Serif",Georgia,serif;font-size:clamp(28px,4vw,48px);color:var(--snow);margin-bottom:16px;letter-spacing:-0.02em;}
+.ctaw p{font-size:17px;color:var(--dim);max-width:460px;margin:0 auto 40px;line-height:1.7;font-weight:300;}
+.cta-actions{display:flex;gap:16px;justify-content:center;flex-wrap:wrap;}
+.cta-note{margin-top:24px;font-size:13px;color:var(--muted);}
+footer{border-top:1px solid var(--border);padding:48px 0;}
+.fi{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:24px;}
+.fl{font-family:"Geist Mono",monospace;font-size:16px;font-weight:700;background:var(--grad);-webkit-background-clip:text;-webkit-text-fill-color:transparent;}
+.fdoms{display:flex;gap:8px;flex-wrap:wrap;margin-top:8px;}
+.db{font-family:"Geist Mono",monospace;font-size:11px;padding:3px 10px;border:1px solid var(--border);border-radius:6px;color:var(--muted);}
+.fr{font-size:12px;color:var(--muted);text-align:right;line-height:1.8;}
+@keyframes fadeUp{from{opacity:0;transform:translateY(24px);}to{opacity:1;transform:translateY(0);}}
+.reveal{opacity:0;transform:translateY(24px);transition:opacity 0.7s ease,transform 0.7s ease;}
+.reveal.visible{opacity:1;transform:translateY(0);}
+@media(max-width:900px){.ps-grid,.wg,.fw{grid-template-columns:1fr;}.vg{grid-template-columns:1fr 1fr;}.stats{flex-direction:column;}.stat{border-right:none;border-bottom:1px solid var(--border);}.stat:last-child{border-bottom:none;}.ctaw{padding:48px 24px;}.wrap{padding:0 20px;}nav{padding:0 20px;}}
+@media(max-width:600px){.vg{grid-template-columns:1fr;}.fm{flex-wrap:wrap;gap:20px;}}
 </style>
 </head>
 <body>
+<div class="orb o1"></div>
+<div class="orb o2"></div>
 
-<div class="orb orb-1"></div>
-<div class="orb orb-2"></div>
-
-<!-- NAV -->
 <nav>
-  <div class="logo">DeliveryIQ<sup>TM</sup></div>
+  <div class="logo">DeliveryIQ&#8482;</div>
   <a href="#contact" class="nav-cta">Request Early Access</a>
 </nav>
 
-<!-- HERO -->
 <section class="hero">
   <div class="wrap">
     <div class="eyebrow">Delivery Intelligence Platform</div>
-    <p class="hero-sub">DeliveryIQ is the intelligence layer for IT delivery organisations. <strong>Develop and Protect your SLA. </strong> Automatomate.</p>
+    <h1>IT delivery that gets<br><em>smarter every day.</em></h1>
+    <p class="hero-sub">
+      <strong>DeliveryIQ&#8482;</strong> is the intelligence layer for IT delivery organisations &mdash;
+      helping your team improve continuously, your SLA stay protected,
+      and your organisation grow from every experience.
+    </p>
     <div class="hero-actions">
-      <a href="#contact" class="btn-primary">Request Early Access <span class="arrow">→</span></a>
-      <a href="#outcomes" class="btn-secondary">See what changes</a>
+      <a href="#contact" class="btn-p">Request Early Access <span class="arr">&#8594;</span></a>
+      <a href="#value" class="btn-s">Learn more</a>
     </div>
-    <div class="stat-strip">
-      <div class="stat">
-        <div class="stat-val">Every</div>
-        <div class="stat-label">Incident becomes intelligence</div>
-      </div>
-      <div class="stat">
-        <div class="stat-val">Any</div>
-        <div class="stat-label">Existing ITSM tool supported</div>
-      </div>
-      <div class="stat">
-        <div class="stat-val">Zero</div>
-        <div class="stat-label">Direct competitors</div>
-      </div>
-      <div class="stat">
-        <div class="stat-val">24yr</div>
-        <div class="stat-label">Practitioner insight behind it</div>
-      </div>
+    <div class="stats">
+      <div class="stat"><div class="sv">Any</div><div class="sl">ITSM tool supported</div></div>
+      <div class="stat"><div class="sv">Zero</div><div class="sl">Direct competitors</div></div>
+      <div class="stat"><div class="sv">24yr</div><div class="sl">Practitioner insight</div></div>
+      <div class="stat"><div class="sv">AI</div><div class="sl">Powered intelligence</div></div>
     </div>
   </div>
 </section>
 
-<!-- PROBLEM -->
 <section>
   <div class="wrap">
-    <div class="section-eye reveal">The gap nobody has filled</div>
-    <h2 class="section-h reveal">Your ITSM tool manages incidents.<br>Nobody manages what they teach you.</h2>
-    <p class="section-sub reveal"> Today that Intelligence missing.</p>
-
-    <div class="problem-grid">
-      <div class="problem-card pain reveal">
-        <div class="card-eye pain">⬤ &nbsp;What happens today</div>
-        <h3>The intelligence is lost but not now.</h3>
-        <ul class="prob-list">
-          <li><span class="icon">—</span>Same engineer makes the same mistake next month</li>
-          <li><span class="icon">—</span>Knowledge walks out the door </li>
-          <li><span class="icon">—</span>Manager spends hours coaching what a system could do</li>
-          <li><span class="icon">—</span>Client disputes your SLA — you have no evidence to respond</li>
-          <li><span class="icon">—</span>Training is not helping </li>
-          <li><span class="icon">—</span>Coverage gaps </li>
+    <div class="eye reveal">The challenge every IT delivery organisation faces</div>
+    <h2 class="sh reveal">Your tools manage the work.<br>Your organisation should grow from it.</h2>
+    <p class="ss reveal">Every IT delivery team works hard. The same challenges keep appearing &mdash; not because of lack of effort, but because the right intelligence is missing.</p>
+    <div class="ps-grid">
+      <div class="ps pain reveal">
+        <div class="pse p">&#9899; &nbsp; Today</div>
+        <h3>The same challenges keep returning.</h3>
+        <ul class="psl">
+          <li><span>&#8212;</span>Situations recur without systemic improvement</li>
+          <li><span>&#8212;</span>Valuable experience leaves when people move on</li>
+          <li><span>&#8212;</span>SLA performance is measured but not fully understood</li>
+          <li><span>&#8212;</span>Team capability gaps surface at the worst possible moment</li>
+          <li><span>&#8212;</span>Management time spent on reporting rather than improving</li>
         </ul>
       </div>
-      <div class="problem-card gain reveal">
-        <div class="card-eye gain">✦ &nbsp;What DeliveryIQ delivers</div>
-        <h3>DeliveryIQ  makes your organisation smarter.</h3>
-        <ul class="prob-list">
-          <li><span class="icon" style="color:var(--emerald);">✓</span>Engineers personalised development Plan </li>
-          <li><span class="icon" style="color:var(--emerald);">✓</span>Knowledge </li>
-          <li><span class="icon" style="color:var(--emerald);">✓</span>Managers see team improvement without effort</li>
-          <li><span class="icon" style="color:var(--emerald);">✓</span>SLA evidence </li>
-          <li><span class="icon" style="color:var(--emerald);">✓</span>Development is targeted </li>
-          <li><span class="icon" style="color:var(--emerald);">✓</span>Coverage risks are visible before they become crises</li>
+      <div class="ps gain reveal">
+        <div class="pse s">&#10022; &nbsp; With DeliveryIQ&#8482;</div>
+        <h3>Your delivery organisation improves continuously.</h3>
+        <ul class="psl">
+          <li><span style="color:var(--emerald)">&#10003;</span>Your team grows stronger from every experience</li>
+          <li><span style="color:var(--emerald)">&#10003;</span>Organisational knowledge is retained and grows</li>
+          <li><span style="color:var(--emerald)">&#10003;</span>Your true SLA performance is visible and protected</li>
+          <li><span style="color:var(--emerald)">&#10003;</span>Risks are visible before they become problems</li>
+          <li><span style="color:var(--emerald)">&#10003;</span>Management has intelligence &mdash; not just data</li>
         </ul>
       </div>
     </div>
   </div>
 </section>
 
-<!-- OUTCOMES -->
-<section id="outcomes">
+<section id="value">
   <div class="wrap">
-    <div class="section-eye reveal">What DeliveryIQ delivers</div>
-    <h2 class="section-h reveal">Five outcomes.<br>One platform. No extra effort.</h2>
-    <p class="section-sub reveal">DeliveryIQ connects to your existing tools and delivers five measurable outcomes — automatically, after every incident.</p>
-
-    <div class="outcomes-grid">
-      <div class="outcome-card reveal">
-        <div class="outcome-icon">🎯</div>
-        <div class="outcome-title">Engineers develop continuously</div>
-        </div>
-      <div class="outcome-card reveal">
-        <div class="outcome-icon">📊</div>
-        <div class="outcome-title">SLA is protected commercially</div>
-        <div class="outcome-desc">Understand your true SLA performance. Know which incidents were genuinely within your control — and have the evidence to demonstrate it when needed.</div>
-      </div>
-      <div class="outcome-card reveal">
-        <div class="outcome-icon">📄</div>
-        <div class="outcome-title">Knowledge is captured automatically</div>
-        <div class="outcome-desc">Every resolution builds your organisation's knowledge base. No manual documentation effort. Institutional knowledge grows with every incident your team handles.</div>
-      </div>
-      <div class="outcome-card reveal">
-        <div class="outcome-icon">🛡️</div>
-        <div class="outcome-title">Incidents are prevented proactively</div>
-        <div class="outcome-desc">Patterns across your environment are continuously monitored. Risks are identified before they become incidents — before your clients feel the impact.</div>
-      </div>
-      <div class="outcome-card reveal">
-        <div class="outcome-icon">👥</div>
-        <div class="outcome-title">Team resilience is always visible</div>
-       </div>
-      <div class="outcome-card reveal" style="border-style:dashed;background:rgba(255,255,255,0.01);display:flex;align-items:center;justify-content:center;">
-        <div style="text-align:center;padding:20px;">
-          <div style="font-size:28px;margin-bottom:12px;">⚡</div>
-          <div class="outcome-title" style="font-size:16px;margin-bottom:8px;">Works with what you have</div>
-          <div class="outcome-desc">No replacement of existing tools. DeliveryIQ adds intelligence on top of your current ITSM and monitoring setup.</div>
-        </div>
-      </div>
+    <div class="eye reveal">What DeliveryIQ&#8482; delivers</div>
+    <h2 class="sh reveal">Intelligence that makes your<br>delivery better.</h2>
+    <p class="ss reveal">DeliveryIQ&#8482; works alongside your existing tools to deliver measurable improvement across your delivery organisation.</p>
+    <div class="vg">
+      <div class="vc reveal"><div class="vi">&#127919;</div><div class="vt">Team Development</div><div class="vd">Your delivery team improves continuously &mdash; based on real experience, not generic training. Measurable, consistent improvement over time.</div></div>
+      <div class="vc reveal"><div class="vi">&#128202;</div><div class="vt">SLA Intelligence</div><div class="vd">Understand your true SLA performance. Know where you stand, what is at risk, and have the evidence you need when you need it.</div></div>
+      <div class="vc reveal"><div class="vi">&#128218;</div><div class="vt">Organisational Knowledge</div><div class="vd">Your organisation&#8217;s knowledge grows and is retained. Experience is never lost when people move on.</div></div>
+      <div class="vc reveal"><div class="vi">&#128302;</div><div class="vt">Proactive Awareness</div><div class="vd">Stay ahead of risks in your environment. Identify what needs attention before it affects your clients or your SLA.</div></div>
+      <div class="vc reveal"><div class="vi">&#128101;</div><div class="vt">Team Resilience</div><div class="vd">Always know the capability and coverage position of your team. No surprises when circumstances change.</div></div>
+      <div class="vc reveal"><div class="vi">&#128737;</div><div class="vt">Commercial Protection</div><div class="vd">Your delivery performance is measured accurately and fairly. The right evidence is available when it matters most.</div></div>
     </div>
   </div>
 </section>
 
-<!-- WHO -->
 <section>
   <div class="wrap">
-    <div class="section-eye reveal">Who DeliveryIQ serves</div>
-    <h2 class="section-h reveal">Built for IT delivery organisations<br>of every type.</h2>
-
-    <div class="who-grid">
-      <div class="who-card featured reveal">
-        <div class="who-tag msp">Managed Service Providers</div>
-        <h3>Protect your delivery commercially.</h3>
-        <p>When you manage multiple client accounts with shared teams and different SLA contracts — DeliveryIQ gives you the evidence, the intelligence, and the protection you need.</p>
-        <ul class="who-benefits">
-          <li>True SLA performance per client account</li>
-          <li>Commercial evidence when SLA is disputed</li>
-          <li>Coverage risk per client before it materialises</li>
-         </ul>
+    <div class="eye reveal">Who DeliveryIQ&#8482; serves</div>
+    <h2 class="sh reveal">Built for IT delivery<br>organisations of every type.</h2>
+    <div class="wg">
+      <div class="wc ft reveal">
+        <div class="wtag wm">Managed Service Providers</div>
+        <h3>Deliver more. Protect more.</h3>
+        <p>When you manage multiple client accounts with different SLA commitments &mdash; DeliveryIQ&#8482; gives you the intelligence and protection to deliver with confidence.</p>
+        <ul class="wl">
+          <li>Clear SLA visibility per client account</li>
+          <li>Commercial evidence when it matters</li>
+          <li>Team performance across all accounts</li>
+          <li>Capability risks identified early</li>
+          <li>Organisational knowledge retained</li>
+        </ul>
       </div>
-      <div class="who-card reveal">
-        <div class="who-tag ent">Enterprise IT Teams</div>
-        <h3>Build a continuously improving team.</h3>
-        <p>When your internal IT team is responsible for enterprise application availability — DeliveryIQ ensures every incident makes your team and your organisation smarter.</p>
-        <ul class="who-benefits">
-          <li>Engineers develop from every incident they handle</li>
-          <li>Knowledge is never lost when someone leaves</li>
-          <li>SLA performance is understood and protected</li>
-          <li>Training is targeted to real capability gaps</li>
-          <li>Coverage is always visible to management</li>
+      <div class="wc reveal">
+        <div class="wtag we">Enterprise IT Teams</div>
+        <h3>A team that improves every day.</h3>
+        <p>When your IT team is responsible for enterprise availability &mdash; DeliveryIQ&#8482; ensures your organisation gets smarter from every experience it handles.</p>
+        <ul class="wl">
+          <li>Continuous team improvement</li>
+          <li>Knowledge never lost</li>
+          <li>SLA performance understood</li>
+          <li>Targeted capability development</li>
+          <li>Team coverage always visible</li>
         </ul>
       </div>
     </div>
   </div>
 </section>
 
-<!-- WORKS WITH -->
 <section>
   <div class="wrap">
-    <div class="works-wrap reveal">
-      <div class="works-label">Works alongside your existing tools</div>
-      <div class="works-logos">
-        <div class="works-badge">ServiceNow</div>
-        <div class="works-badge">Jira Service Management</div>
-        <div class="works-badge">Freshservice</div>
-        <div class="works-badge">PagerDuty</div>
-        <div class="works-badge">OpsGenie</div>
-        <div class="works-badge">Azure Monitor</div>
-        <div class="works-badge">AWS CloudWatch</div>
-        <div class="works-badge">Datadog</div>
-        <div class="works-badge">Nagios</div>
-        <div class="works-badge">Zabbix</div>
-        <div class="works-badge">GitHub</div>
-        <div class="works-badge">Jenkins</div>
+    <div class="ww reveal">
+      <div class="wl2">Works alongside your existing tools</div>
+      <div class="wbadges">
+        <div class="wb">ServiceNow</div><div class="wb">Jira Service Management</div>
+        <div class="wb">Freshservice</div><div class="wb">PagerDuty</div>
+        <div class="wb">OpsGenie</div><div class="wb">Azure Monitor</div>
+        <div class="wb">AWS CloudWatch</div><div class="wb">Datadog</div>
+        <div class="wb">Nagios</div><div class="wb">Zabbix</div>
+        <div class="wb">GitHub</div><div class="wb">Jenkins</div>
       </div>
-      <div class="works-note">No replacement of existing tools. DeliveryIQ adds the intelligence layer on top of what you already use. If you have no formal ITSM tool — DeliveryIQ works without one too.</div>
+      <div class="wn">DeliveryIQ&#8482; adds intelligence on top of your existing setup. No replacement of current tools required. Works even without a formal ITSM tool.</div>
     </div>
   </div>
 </section>
 
-<!-- FOUNDER -->
 <section>
   <div class="wrap">
-    <div class="section-eye reveal">Built by a practitioner</div>
-    <h2 class="section-h reveal">Not designed in a boardroom.<br>Lived in the field.</h2>
-
-    <div class="founder-wrap">
-      <div class="founder-card reveal">
-        <div class="founder-avatar">M</div>
-        <div class="founder-name">Mahesh Nandre</div>
-        <div class="founder-title">Founder — DeliveryIQ</div>
-        <div class="founder-tags">
+    <div class="eye reveal">Built by a practitioner</div>
+    <h2 class="sh reveal">Not designed in a boardroom.<br>Built from 24 years in the field.</h2>
+    <div class="fw">
+      <div class="fc reveal">
+        <div class="fav">M</div>
+        <div class="fn">Mahesh Nandre</div>
+        <div class="ft2">Founder &mdash; DeliveryIQ&#8482;</div>
+        <div class="fq">B.E. &nbsp;|&nbsp; M.B.A.</div>
+        <div class="ftags">
           <span class="ftag">24 years IT delivery</span>
           <span class="ftag">Global enterprise</span>
-          <span class="ftag">Telecom and BFSI</span>
-          <span class="ftag">150+ team leader</span>
-         </div>
+          <span class="ftag">Telecom &amp; BFSI</span>
+          <span class="ftag">150+ team leadership</span>
+          <span class="ftag">Pune, India</span>
+        </div>
       </div>
-      <div class="founder-story reveal">
-        <h3>"I built DeliveryIQ manually for years. Now I am automating it."</h3>
-        <p>II designed a five-component operational excellence framework for one of the world's largest enterprise IT delivery estates — individual feedback per engineer after every incident, knowledge capture targets, coverage tracking, cross-training programmes, and performance measurement. The framework achieved industry-leading SLA compliance and was recognised as best in class.</p>
-        <p>Over the next 18 years I applied the same principles across global enterprise IT delivery engagements — turning around accounts under termination notice, consistently improving team performance, and protecting delivery organisations commercially through evidence-based incident analysis.</p>
-        <p>In May 2026 I realised: everything I did manually for 24 years. DeliveryIQ is the automated version of a framework proven across some of the world's largest enterprises.</p>
-        <div class="founder-metrics">
-          <div class="f-metric">
-            <div class="fv">24yr</div>
-            <div class="fl">Practitioner experience</div>
-          </div>
-          <div class="f-metric">
-            <div class="fv">Industry leading</div>
-            <div class="fl">SLA achieved</div>
-          </div>
-          <div class="f-metric">
-            <div class="fv">3+</div>
-            <div class="fl">Major rescues delivered</div>
-          </div>
+      <div class="fs reveal">
+        <h3>&#8220;I spent 24 years building this manually. DeliveryIQ&#8482; does it automatically.&#8221;</h3>
+        <p>Over 24 years leading IT delivery across global enterprises in telecommunications, banking, and technology sectors &mdash; I saw the same challenge everywhere. Teams worked hard. Tools tracked the work. But the intelligence that should have come from that experience was never captured. Every organisation was starting from scratch.</p>
+        <p>I spent years designing and operating frameworks that changed this &mdash; developing teams systematically, capturing organisational knowledge, understanding true SLA performance, and building resilient delivery organisations. The results were consistently strong. But it required significant personal effort to sustain.</p>
+        <p>In May 2026, I founded DeliveryIQ&#8482; to make that intelligence available to every IT delivery organisation &mdash; automatically, from every experience they handle.</p>
+        <div class="fm">
+          <div><div class="fmv">24yr</div><div class="fml">Delivery leadership</div></div>
+          <div><div class="fmv">Global</div><div class="fml">Enterprise experience</div></div>
+          <div><div class="fmv">Multiple</div><div class="fml">Major turnarounds</div></div>
         </div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- EARLY ACCESS CTA -->
 <div class="wrap" id="contact">
-  <div class="early-wrap reveal">
-    <h2>Ready?</h2>
+  <div class="ctaw reveal">
+    <h2>Ready to make your delivery<br>organisation smarter?</h2>
     <p>We are onboarding early access clients across India. Free pilot for qualifying IT delivery organisations.</p>
-    <div class="early-actions">
-      <a href="mailto:mahesh.nandre@gmail.com?subject=DeliveryIQ Early Access Request&body=Hello Mahesh,%0A%0AI am interested in an early access pilot of DeliveryIQ.%0A%0AOrganisation:%0ARole:%0ATeam size:%0ACurrent ITSM tool:%0A%0AThank you" class="btn-primary">Request Early Access <span class="arrow">→</span></a>
-      <a href="mailto:mahesh.nandre@gmail.com?subject=DeliveryIQ Demo Request" class="btn-secondary">Schedule a Conversation</a>
+    <div class="cta-actions">
+      <a href="mailto:mahesh.nandre@gmail.com?subject=DeliveryIQ Early Access Request&body=Hello Mahesh,%0A%0AI am interested in an early access pilot of DeliveryIQ.%0A%0AOrganisation:%0ARole:%0ATeam size:%0ACurrent ITSM tool:%0A%0AThank you" class="btn-p">Request Early Access <span class="arr">&#8594;</span></a>
+      <a href="mailto:mahesh.nandre@gmail.com?subject=DeliveryIQ Conversation Request" class="btn-s">Schedule a Conversation</a>
     </div>
-    <div class="early-note">
-      mahesh.nandre@gmail.com &nbsp;·&nbsp; +91 7423077777 &nbsp;·&nbsp; India
-    </div>
+    <div class="cta-note">mahesh.nandre@gmail.com &nbsp;&middot;&nbsp; +91 7423077777 &nbsp;&middot;&nbsp; Pune, India</div>
   </div>
 </div>
 
-<!-- FOOTER -->
 <footer>
   <div class="wrap">
-    <div class="footer-inner">
+    <div class="fi">
       <div>
-        <div class="footer-logo">DeliveryIQ™</div>
+        <div class="fl">DeliveryIQ&#8482;</div>
         <div style="font-size:12px;color:var(--muted);margin-top:4px;">Delivery Intelligence Platform</div>
-        <div class="footer-domains">
-          <span class="domain-badge">deliveryiq.tech</span>
-          <span class="domain-badge">deliveryiq.co.in</span>
-          <span class="domain-badge">deliveryiq.cloud</span>
+        <div class="fdoms">
+          <span class="db">deliveryiq.tech</span>
+          <span class="db">deliveryiq.co.in</span>
+          <span class="db">deliveryiq.cloud</span>
         </div>
       </div>
-      <div class="footer-right">
-        <div>© 2026 DeliveryIQ. All rights reserved.</div>
-        <div>Trademark filed · Patent pending</div>
-        <div>Founded by Mahesh Nandre · Pune, India</div>
+      <div class="fr">
+        <div>&copy; 2026 DeliveryIQ&#8482;. All rights reserved.</div>
+        <div>Trademark filed &middot; Patent pending</div>
+        <div>Founded by Mahesh Nandre, B.E., M.B.A. &middot; Pune, India</div>
       </div>
     </div>
   </div>
 </footer>
 
 <script>
-const reveals = document.querySelectorAll('.reveal');
-const observer = new IntersectionObserver((entries) => {
-  entries.forEach((entry, i) => {
-    if (entry.isIntersecting) {
-      setTimeout(() => entry.target.classList.add('visible'), i * 80);
-      observer.unobserve(entry.target);
-    }
-  });
-}, { threshold:0.08, rootMargin:'0px 0px -40px 0px' });
-reveals.forEach(el => observer.observe(el));
+const reveals=document.querySelectorAll(".reveal");
+const obs=new IntersectionObserver((entries)=>{entries.forEach((e,i)=>{if(e.isIntersecting){setTimeout(()=>e.target.classList.add("visible"),i*80);obs.unobserve(e.target);}});},{threshold:0.08,rootMargin:"0px 0px -40px 0px"});
+reveals.forEach(el=>obs.observe(el));
 </script>
+
+<!-- Private admin panel - only visible at deliveryiq.tech?admin=1 -->
+<div id="adm" style="display:none;position:fixed;bottom:20px;right:20px;z-index:9999;background:rgba(6,9,15,0.97);border:1px solid rgba(14,165,233,0.4);border-radius:12px;padding:20px 24px;font-family:'Geist Mono',monospace;min-width:240px;box-shadow:0 0 40px rgba(0,0,0,0.5);">
+  <div style="font-size:10px;color:#38BDF8;letter-spacing:0.1em;text-transform:uppercase;margin-bottom:16px;">&#9889; DeliveryIQ&#8482; Analytics</div>
+  <div style="font-size:12px;color:#94A3B8;margin-bottom:16px;">View your full visitor dashboard:</div>
+  <a href="https://YOUR-SITE-CODE.goatcounter.com" target="_blank" style="display:block;background:linear-gradient(135deg,#0EA5E9,#14B8A6);color:white;text-decoration:none;padding:10px 16px;border-radius:8px;font-size:12px;font-weight:600;text-align:center;margin-bottom:12px;">Open Analytics Dashboard &#8594;</a>
+  <div style="font-size:11px;color:#64748B;text-align:center;">Visitors &middot; Countries &middot; Pages<br>Referrers &middot; All private to you</div>
+</div>
+<script>
+if(new URLSearchParams(window.location.search).get("admin")==="1"){
+  document.getElementById("adm").style.display="block";
+}
+</script>
+
 </body>
 </html>
